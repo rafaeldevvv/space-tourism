@@ -1,0 +1,147 @@
+/* -------------------------------- */
+/* Components                       */
+/* -------------------------------- */
+
+.largeButton {
+  display: flex;
+  width: max-content;
+  place-items: center;
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 1;
+
+  padding: 0 2em;
+  border-radius: 50%;
+  text-decoration: none;
+  outline: 0;
+  border: 0;
+}
+
+.largeButton::after {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background-color: hsl(var(--clr-white) / 0.15);
+  border-radius: inherit;
+  opacity: 0;
+
+  transition: transform 400ms ease-out, opacity 400ms linear;
+}
+
+.largeButton:hover::after,
+.largeButton:focus::after {
+  transform: scale(1.5);
+  opacity: 1;
+}
+
+/* my solution
+ .underlineIndicators > * {
+    position: relative;
+ }
+ 
+ .underlineIndicators > *::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0px;
+    width: 100%;
+ }
+ 
+ .underlineIndicators > *.active::after {
+    height: 3px;
+    background-color: hsl(var(--clr-white));
+ }
+ 
+ .underlineIndicators > *:hover::after {
+    height: 3px;
+    background-color: hsl(var(--clr-light));
+ } 
+ */
+
+/* my solution
+ .button {
+    cursor: pointer;
+    border: 0;
+    background: none;
+ }
+ */
+
+.underlineIndicators > * {
+  cursor: pointer;
+
+  padding: var(--underline-gap, 1rem) 0;
+  border: 0;
+  background: none;
+  border-bottom: 0.2rem solid hsl(var(--clr-white) / 0);
+}
+
+.underlineIndicators > *:hover,
+.underlineIndicators > *:focus {
+  border-color: hsl(var(--clr-white) / 0.5);
+}
+
+.underlineIndicators > .active,
+.underlineIndicators > [aria-selected="true"] {
+  border-color: hsl(var(--clr-white) / 1);
+  color: var(--clr-white);
+}
+
+/* my solution
+ .underlineIndicators>.activeText {
+    border-color: hsl(var(--clr-white) / 1);
+    color: hsl(var(--clr-white));
+ } 
+ */
+
+.tabList {
+  --gap: 2rem;
+}
+
+.dotIndicators > * {
+  cursor: pointer;
+  border: 0;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  width: 1em;
+  /* you could also: */
+  /* padding: .5em; */
+  background-color: hsl(var(--clr-white) / 0.25);
+}
+
+.dotIndicators > *:focus,
+.dotIndicators > *:hover {
+  background-color: hsl(var(--clr-white) / 0.5);
+}
+
+.dotIndicators > [aria-selected="true"] {
+  background-color: hsl(var(--clr-white) / 1);
+}
+
+.numberIndicators > * {
+  cursor: pointer;
+  --flow-space: 1.5rem;
+
+  display: block;
+  padding: 0 1em;
+  aspect-ratio: 1 / 1;
+
+  border: 2px solid hsl(var(--clr-white) / 0.2);
+  border-radius: 50%;
+}
+
+.numberIndicators > *:hover,
+.numberIndicators > *:focus {
+  border-color: hsl(var(--clr-white) / 0.5);
+}
+
+.numberIndicators > [aria-selected="true"] {
+  border-color: hsl(var(--clr-white));
+  background-color: hsl(var(--clr-white));
+  color: hsl(var(--clr-dark));
+}
