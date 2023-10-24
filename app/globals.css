@@ -1,0 +1,108 @@
+/* -------------------------------- */
+/* Custom Properties                */
+/* -------------------------------- */
+:root {
+  /* colors */
+  --clr-dark: 230 35% 7%;
+  --clr-white: 0 0% 100%;
+  --clr-light: 231 77% 90%;
+
+  /* font-sizes */
+  --fs-200: 0.875rem;
+  --fs-300: 1rem;
+  --fs-400: 1.125rem;
+  --fs-500: 1.75rem;
+  --fs-600: 2rem;
+  --fs-700: 3.5rem;
+  --fs-800: 6.25rem;
+  --fs-900: 9.375rem;
+
+  /* font-families */
+  --ff-serif: var(--ff-bellefair), serif;
+  --ff-sans-cond: var(--ff-barlow-condensed), sans-serif;
+  --ff-sans-normal: var(--ff-barlow-normal), sans-serif;
+}
+
+
+/* -------------------------------- */
+/* Reset                            */
+/* -------------------------------- */
+
+/* box-sizing and margin */
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-weight: 400;
+}
+
+html, body {
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* set up the body */
+body {
+  font-family: var(--ff-sans-normal);
+  font-size: var(--fs-400);
+  background-color: hsl(var(--clr-dark));
+  color: hsl(var(--clr-white));
+  line-height: 1.5;
+  min-height: 100vh;
+
+  background-image: url("/assets/home/background-home-mobile.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+}
+
+@media (min-width: 40em) {
+  body {
+    background-image: url("/assets/home/background-home-tablet.jpg");
+  }
+}
+
+@media (min-width: 58em) and (orientation: landscape) {
+  body {
+    background-image: url("/assets/home/background-home-desktop.jpg");
+  }
+}
+
+/* make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* make forms easier to work with */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
