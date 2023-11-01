@@ -48,15 +48,17 @@ export default function GlobalHeader() {
             styles.container
           )}
         >
-          <Link href="/" className={styles.logoLink}>
-            <Image
-              src="/assets/shared/logo.svg"
-              alt="star logo"
-              width={40}
-              height={40}
-            />
-            <span className={utilities.srOnly}>Home page</span>
-          </Link>
+          <div>
+            <Link href="/" className={styles.logoLink}>
+              <Image
+                src="/assets/shared/logo.svg"
+                alt="space toursim logo"
+                width={40}
+                height={40}
+              />
+              <span className={utilities.srOnly}>Home page</span>
+            </Link>
+          </div>
           <div className={styles.line} role="presentation"></div>
           <Nav links={links} pathname={pathname} />
         </div>

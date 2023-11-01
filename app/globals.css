@@ -8,14 +8,14 @@
   --clr-light: 231 77% 90%;
 
   /* font-sizes */
-  --fs-200: 0.875rem;
-  --fs-300: 1rem;
-  --fs-400: 1.125rem;
-  --fs-500: 1.75rem;
-  --fs-600: 2rem;
-  --fs-700: 3.5rem;
-  --fs-800: 6.25rem;
-  --fs-900: 9.375rem;
+  --fs-900: clamp(5rem, 10vmax + 1rem, 9.375rem); /* m */
+  --fs-800: 3.5rem; /* m */
+  --fs-700: 1.5rem; /* m */
+  --fs-600: 1rem; /* m */
+  --fs-500: 1rem; /* m */
+  --fs-400: 0.9375rem; /* m */
+  --fs-300: 1rem; /* m */
+  --fs-200: 0.875rem; /* d */
 
   /* font-families */
   --ff-serif: var(--ff-bellefair), serif;
@@ -23,6 +23,25 @@
   --ff-sans-normal: var(--ff-barlow-normal), sans-serif;
 }
 
+@media (min-width: 35em) {
+  :root {
+    --fs-800: 5rem;
+    --fs-700: 2.5rem;
+    --fs-600: 1.5rem;
+    --fs-500: 1.25rem;
+    --fs-400: 1rem;
+  }
+}
+
+@media (min-width: 45em) {
+  :root {
+    --fs-800: 6.25rem;
+    --fs-700: 3.5rem;
+    --fs-600: 2rem;
+    --fs-500: 1.75rem;
+    --fs-400: 1.125rem;
+  }
+}
 
 /* -------------------------------- */
 /* Reset                            */
@@ -47,8 +66,10 @@ p {
   font-weight: 400;
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
+  
   position: relative;
 }
 
@@ -59,23 +80,91 @@ body {
   background-color: hsl(var(--clr-dark));
   color: hsl(var(--clr-white));
   line-height: 1.5;
-  min-height: 100vh;
-
-  background-image: url("/assets/home/background-home-mobile.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: bottom;
 }
 
+.pageWrapper {
+  min-height: 100vh;
+
+  background-size: cover;
+  background-position: center bottom;
+
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+}
+
+/* ------------------------------------------------- */
+/* Page Specific Background Images                   */
+/* ------------------------------------------------- */
+
+.home {
+  background-image: url("/assets/home/background-home-mobile.jpg");
+}
+
+.destination {
+  background-image: url("/assets/destination/background-destination-mobile.jpg");
+}
+
+.crew {
+  background-image: url("/assets/crew/background-crew-mobile.jpg");
+}
+
+.technology {
+  background-image: url("/assets/technology/background-technology-mobile.jpg");
+}
+
+/* tablet */
+
 @media (min-width: 40em) {
-  body {
+  .home {
     background-image: url("/assets/home/background-home-tablet.jpg");
+  }
+
+  .destination {
+    background-image: url("/assets/destination/background-destination-tablet.jpg");
+  }
+
+  .crew {
+    background-image: url("/assets/crew/background-crew-tablet.jpg");
+  }
+
+  .technology {
+    background-image: url("/assets/technology/background-technology-tablet.jpg");
   }
 }
 
-@media (min-width: 58em) and (orientation: landscape) {
-  body {
+/* desktop */
+
+@media (min-width: 50em) and (orientation: landscape) {
+  .home {
     background-image: url("/assets/home/background-home-desktop.jpg");
+  }
+
+  .destination {
+    background-image: url("/assets/destination/background-destination-desktop.jpg");
+  }
+
+  .crew {
+    background-image: url("/assets/crew/background-crew-desktop.jpg");
+  }
+
+  .technology {
+    background-image: url("/assets/technology/background-technology-desktop.jpg");
+  }
+}
+
+/* main */
+
+main > * {
+  height: 100%;
+}
+
+main {
+  text-align: center;
+}
+
+@media (min-width: 50em) and (orientation: landscape) {
+  main {
+    text-align: left;
   }
 }
 
@@ -96,7 +185,6 @@ select {
 
 /* remove animations for people who've turned them off */
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {

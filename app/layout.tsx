@@ -5,6 +5,7 @@ import classes from "./utils/classes";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import PageWrapper from "./components/PageWrapper";
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
@@ -42,9 +43,11 @@ export default function RootLayout({
       )}
     >
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <PageWrapper>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </PageWrapper>
       </body>
     </html>
   );

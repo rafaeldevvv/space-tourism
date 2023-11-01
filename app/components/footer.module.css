@@ -1,20 +1,24 @@
 .primaryFooter {
-   margin-block: 6rem 3rem;
+   margin-block-end: 3rem;
    text-align: center;
    background-color: hsl(var(--clr-dark) / .4);
    max-width: max-content;
    margin-inline: auto;
    padding-block: 1rem;
  }
+
+ .primaryFooter a:hover {
+   text-decoration: none;
+ }
  
  @media (min-width: 40em) {
    .primaryFooter {
-     margin-block: 9rem 3rem;
+     /* margin-block-start: 9rem; */
    }
  }
  
- @media (min-width: 58em) {
+ @media (min-width: 55em) {
    .primaryFooter {
-     margin-block: 12rem 3rem;
+     margin-block-start: 0;
    }
  }

@@ -14,6 +14,10 @@
   gap: var(--gap, 1rem);
 }
 
+.dBlock {
+  display: block;
+}
+
 /* 
     where selects all elements that can be selected by any selector inside the list
     but it has no specificity at all
@@ -26,6 +30,48 @@
   max-width: 80rem;
   margin-inline: auto;
   padding-inline: 2rem;
+}
+
+.gridContainer {
+  display: grid;
+  place-items: center;
+  row-gap: 6rem;
+  padding-inline: 2rem;
+  padding-block: 1rem;
+}
+
+/* ch is roughly the width of the zero(0) character */
+
+.gridContainer * {
+  max-width: 50ch;
+}
+
+@media (min-width: 35em) {
+  .gridContainer {
+    padding-block: 7rem;
+  }
+}
+
+@media (min-width: 50em) {
+  .gridContainer {
+    row-gap: 0;
+    padding-inline: 0;
+  }
+}
+
+@media (min-width: 50em) and (orientation: landscape) {
+  .gridContainer {
+    column-gap: var(--container-gap, 2rem);
+    grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 36.5rem)) minmax(2rem, 1fr);
+  }
+  
+  .gridContainer > *:first-child {
+    grid-column: 2;
+  }
+
+  .gridContainer > *:last-child {
+    grid-column: 3;
+  }
 }
 
 .srOnly {
