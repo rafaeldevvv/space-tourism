@@ -1,8 +1,4 @@
-/* -------------------------------- */
-/* Mobile Navigation                */
-/* -------------------------------- */
-.primaryHeader .container {
-  height: 5.7rem;
+.container {
   justify-content: space-between;
   align-items: center;
 }
@@ -12,27 +8,13 @@
 }
 
 .primaryNavigation {
-  --underline-gap: 0.15rem;
-
-  display: none;
-
+  --underline-gap: 2rem;
+  --gap: 1.1rem clamp(1.5rem, 5vw, 3rem);
+  
   list-style: none;
-  background-color: hsl(var(--clr-dark));
-
-  padding-block-start: min(10rem, 18vh);
+  backdrop-filter: blur(2.5rem);
+  background-color: hsl(var(--clr-light) / 0.1);
   padding-inline-start: 2.5rem;
-  min-width: max-content;
-
-  position: fixed;
-  inset: 0 0 0 30vw;
-  z-index: 99;
-}
-
-@supports (backdrop-filter: blur(40px)) {
-  .primaryNavigation {
-    backdrop-filter: blur(40px);
-    background-color: hsl(var(--clr-light) / 0.1);
-  }
 }
 
 .primaryNavigation a {
@@ -45,48 +27,80 @@
   margin-inline-end: 0.3em;
 }
 
+.mobileNavToggle {
+  display: none;
+}
+
+/* -------------------------------- */
+/* Mobile Navigation                */
+/* -------------------------------- */
+
 @media (max-width: 35em) {
-  .primaryNavigation.active {
-    display: flex;
-    flex-direction: column;
-    gap: 1.1rem;
+  .primaryHeader .container {
+    height: 5.7rem;
   }
 
-  .primaryNavigation > li {
+  .primaryNavigation {
+    --underline-gap: 0.15rem;
+    flex-direction: column;
+    
+    padding-block-start: min(10rem, 18vh);
+    
+    position: fixed;
+    inset: 0 0 0 30vw;
+    z-index: 99;
+
+    transform: translateX(100%);
+    transition: transform .3s ease-in-out;
+  }
+  
+  .primaryNavigation.active {    
+    transform: translateX(0%);
+  }
+
+  .primaryNavigation.underlineIndicators > * {
     border: 0;
   }
 
-  .primaryNavigation > .active {
+  .primaryNavigation.underlineIndicators > .active {
     border-inline-end: 3px solid hsl(var(--clr-white));
   }
 
-  .primaryNavigation > *:hover,
-  .primaryNavigation > *:focus {
+  .primaryNavigation.underlineIndicators > *:hover,
+  .primaryNavigation.underlineIndicators > *:focus {
     border-inline-end: 3px solid hsl(var(--clr-white) / 0.5);
+  }
+
+  .mobileNavToggle {
+    display: block;
+    
+    position: absolute;
+    top: 2.31rem;
+    right: 2rem;
+    z-index: 999;
+    
+    width: 1.5rem;
+    aspect-ratio: 1;
+
+    background-image: url("/assets/shared/icon-hamburger.svg");
+    background-size: cover;
+    background-position: center;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+  }
+
+  .mobileNavToggle:focus-visible {
+    outline: 5px solid white;
+    outline-offset: 5px;
+  }
+  
+  .mobileNavToggle[aria-expanded="true"] {
+    background-image: url("/assets/shared/icon-close.svg");
+    position: fixed;
   }
 }
 
-.menuToggle {
-  aspect-ratio: 1;
-  width: 1.5rem;
-  border: 0;
-
-  position: relative;
-  z-index: 999;
-
-  background-image: url("/assets/shared/icon-hamburger.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-color: transparent;
-}
-
-.menuToggle[aria-expanded="true"] {
-  background-image: url("/assets/shared/icon-close.svg");
-  position: fixed;
-  top: 2.31rem;
-  right: 2rem;
-}
 
 /* -------------------------------- */
 /* Tablet Navigation                */
@@ -94,7 +108,6 @@
 
 @media (min-width: 35em) {
   .primaryHeader .container {
-    height: auto;
     padding-inline-end: 0;
   }
 
@@ -102,26 +115,13 @@
     border-color: transparent;
   }
 
-  .primaryNavigation {
-    --underline-gap: 2rem;
-
-    --fs-300: 0.875rem; /* font-size of utility class on links */
-
-    display: flex;
-    gap: clamp(2.5rem, 4vw, 3rem);
-    flex-direction: row;
-
+  .primaryNavigation {    
     position: static;
-
-    padding-block: 0;
-    padding-inline-end: 2.5rem;
+    
+    padding-inline: clamp(2.5rem, 8vw, 7rem);
   }
 
   .primaryNavigation a > span {
-    display: none;
-  }
-
-  .menuToggle {
     display: none;
   }
 }
@@ -135,46 +135,46 @@
     padding-top: 3rem;
   }
 
-  .primaryHeader .container {
+  .container {
     --gap: 0;
   }
 
-  .primaryHeader .line {
+  .container::after {
+    content: "";
     display: block;
-    flex-grow: 1;
-    flex-shrink: 1;
+    width: 100%;
+    order: 1;
 
     height: 1px;
     background-color: hsl(var(--clr-white));
-    transform: translateX(3rem);
+    transform: translateX(clamp(1rem, 4vw, 3rem));
     position: relative;
     z-index: 999;
   }
 
+  .primaryHeader nav {
+    order: 2;
+  }
+
   .primaryNavigation {
-    --fs-300: 1rem;
     position: relative;
-    inset: 0;
-    padding-inline-start: 8rem;
   }
 
   .primaryNavigation::after {
     content: "";
     position: absolute;
     left: 100%;
-    width: calc((100vw - 80rem) / 2);
+    /* 
+      the width of the device minus the width of the container devided by two
+      this is to get the width of the sides out of the container
+    */
+    width: calc((100vw - 80rem) / 2); 
     height: 100%;
-    background-color: hsl(var(--clr-dark));
+    backdrop-filter: blur(2.5rem);
+    background-color: hsl(var(--clr-light) / 0.15);
   }
 
-  @supports (backdrop-filter: blur(40px)) {
-    .primaryNavigation::after {
-      backdrop-filter: blur(40px);
-      background-color: hsl(var(--clr-light) / 0.1);
-    }
-  }
-
-  .logoLink,
+  .logoWrapper,
   .primaryHeader nav {
     flex-shrink: 0;
     flex-grow: 0;

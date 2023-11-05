@@ -148,7 +148,7 @@ Removing animations for accessibility
 }
 ```
 
-Use of `rem` values together with viewport units to prevent zoom problems. Viewport units do not react to zooming in and out, so the font-size would be the same regardless of the zoom level. And also I learnt about the `vmax` and `vmin` units.
+Use of `rem` values together with viewport units to prevent zoom problems. Viewport units do not react to zooming in and out, so the font-size would be the same regardless of the zoom level. And also I learnt about the `vmax` and `vmin` units. The addition of the `rem` unit is primarily useful for typography as while the user is zoomming in and out, they probably want the text to grow or shrink together.
 
 ```css
 :root {
@@ -175,6 +175,7 @@ The `max()` function takes the biggest value.
 
 ### Useful Resources
 
+- [Space Travel course with Kevin Powell](https://scrimba.com/learn/spacetravel)
 - [How to define css variables in style attribute in React and TypeScript](https://stackoverflow.com/questions/52005083/how-to-define-css-variables-in-style-attribute-in-react-and-typescript)
 - [TypeScript Error : Unexpected token `div`. Expected jsx identifier](https://stackoverflow.com/questions/75213927/typescript-error-unexpected-token-div-expected-jsx-identifier)
 - [Why margin on child element moves the parent element in CSS ?](https://www.geeksforgeeks.org/why-margin-on-child-element-moves-the-parent-element-in-css/)

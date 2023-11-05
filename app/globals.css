@@ -132,6 +132,12 @@ body {
   }
 }
 
+@media (min-width: 35em) and (orientation: portrait) {
+  .home {
+    background-position: center;
+  }
+}
+
 /* desktop */
 
 @media (min-width: 50em) and (orientation: landscape) {

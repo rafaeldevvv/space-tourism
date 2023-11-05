@@ -7,8 +7,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 import classes from "../utils/classes";
-import styles from "./header.module.css";
 import utilities from "../shared-css/utility-classes.module.css";
+import styles from "./header.module.css";
 import components from "../shared-css/components.module.css";
 
 interface ILink {
@@ -48,18 +48,18 @@ export default function GlobalHeader() {
             styles.container
           )}
         >
-          <div>
-            <Link href="/" className={styles.logoLink}>
+          <div className={styles.logoWrapper}>
+            <Link href="/">
               <Image
                 src="/assets/shared/logo.svg"
                 alt="space toursim logo"
                 width={40}
                 height={40}
+                className={styles.logo}
               />
               <span className={utilities.srOnly}>Home page</span>
             </Link>
           </div>
-          <div className={styles.line} role="presentation"></div>
           <Nav links={links} pathname={pathname} />
         </div>
       </header>
@@ -74,7 +74,7 @@ export function Nav({ links, pathname }: { links: ILink[]; pathname: string }) {
 
   return (
     <nav role="navigation" aria-label="Main menu">
-      <MenuToggle
+      <MobileNavToggle
         listId={listId}
         onClick={() => setIsExpanded(!isExpanded)}
         isExpanded={isExpanded}
@@ -89,7 +89,7 @@ export function Nav({ links, pathname }: { links: ILink[]; pathname: string }) {
   );
 }
 
-export function MenuToggle({
+export function MobileNavToggle({
   isExpanded,
   listId,
   onClick,
@@ -102,7 +102,7 @@ export function MenuToggle({
 
   return (
     <button
-      className={styles.menuToggle}
+      className={styles.mobileNavToggle}
       aria-expanded={isExpanded}
       aria-controls={listId}
       aria-haspopup="menu"
@@ -130,7 +130,9 @@ export function PrimaryNavigation({
       className={classes(
         components.underlineIndicators,
         styles.primaryNavigation,
-        isExpanded ? styles.active : ""
+        styles.underlineIndicators,
+        isExpanded ? styles.active : "",
+        utilities.flex,
       )}
       id={id}
     >
@@ -139,8 +141,7 @@ export function PrimaryNavigation({
           <li
             key={l.name}
             className={classes(
-              pathname === l.href ? styles.active : "",
-              pathname === l.href ? components.active : ""
+              pathname === l.href ? `${styles.active} ${components.active}` : ""
             )}
           >
             <Link
