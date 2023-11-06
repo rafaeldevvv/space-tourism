@@ -82,6 +82,29 @@ body {
   line-height: 1.5;
 }
 
+.skipToContent {
+  position: absolute;
+  transform: translateY(-100%);
+  z-index: 9999;
+
+  background-color: hsl(var(--clr-white));
+  border-radius: 0 0 .8rem 0;
+  width: max-content;
+  padding: 1rem;
+  margin-inline: auto;
+  
+  color: hsl(var(--clr-dark));
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  transition: transform 300ms ease-in;
+}
+
+.skipToContent:focus {
+  transform: translateY(0);
+}
+
 .pageWrapper {
   min-height: 100vh;
 
