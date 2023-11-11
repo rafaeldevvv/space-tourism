@@ -85,6 +85,7 @@ body {
 .skipToContent {
   position: absolute;
   transform: translateY(-100%);
+  opacity: 0;
   z-index: 9999;
 
   background-color: hsl(var(--clr-white));
@@ -103,6 +104,7 @@ body {
 
 .skipToContent:focus {
   transform: translateY(0);
+  opacity: 1;
 }
 
 .pageWrapper {
@@ -202,6 +204,8 @@ img,
 picture {
   max-width: 100%;
   display: block;
+  object-fit: contain;
+  height: max-content;
 }
 
 /* make forms easier to work with */

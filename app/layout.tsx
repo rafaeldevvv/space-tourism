@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { Barlow_Condensed, Bellefair, Barlow } from "next/font/google";
 import classes from "./utils/classes";
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import PageWrapper from "./components/PageWrapper";
+import Header from "./layout-components/Header";
+import Footer from "./layout-components/Footer";
+import PageWrapper from "./layout-components/PageWrapper";
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],

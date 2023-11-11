@@ -18,6 +18,10 @@
   display: block;
 }
 
+.dNone {
+  display: none;
+}
+
 /* 
     where selects all elements that can be selected by any selector inside the list
     but it has no specificity at all
@@ -42,7 +46,7 @@
 
 /* ch is roughly the width of the zero(0) character */
 
-.gridContainer * {
+.gridContainer p {
   max-width: 50ch;
   margin-inline: auto;
 }
@@ -61,7 +65,7 @@
 
 @media (min-width: 50em) and (orientation: landscape) {
   .gridContainer {
-    padding-block: 15rem;
+    padding-block: 4rem;
     row-gap: 0;
     column-gap: var(--container-gap, 2rem);
     grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 36.5rem)) minmax(2rem, 1fr);
@@ -193,15 +197,45 @@
   line-height: 1.1;
 }
 
+
+.textLeft {
+  text-align: left;
+}
+
 .numberedTitle {
   font-size: var(--fs-500);
   text-transform: uppercase;
   letter-spacing: 4.72px;
   font-family: var(--ff-sans-cond);
+  text-align: center;
+  margin-bottom: 4em;
+}
+
+@media (min-width: 35em) {
+  .numberedTitle {
+    text-align: left;
+  }
 }
 
 .numberedTitle span {
   color: hsl(var(--clr-white) / 0.25);
   font-weight: 700;
   margin-inline-end: 0.5em;
+}
+
+/* spacing */
+.mb100 {
+  margin-bottom: .3em;
+}
+.mb200 {
+  margin-bottom: .6em;
+}
+.mb300 {
+  margin-bottom: .9em;
+}
+.mb400 {
+  margin-bottom: 1.2em;
+}
+.mb500 {
+  margin-bottom: 1.5em;
 }

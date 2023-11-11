@@ -75,7 +75,7 @@ export function Nav({ links, pathname }: { links: ILink[]; pathname: string }) {
   return (
     <nav role="navigation" aria-label="Main menu">
       <MobileNavToggle
-        listId={listId}
+        controls={listId}
         onClick={() => setIsExpanded(!isExpanded)}
         isExpanded={isExpanded}
       />
@@ -91,11 +91,11 @@ export function Nav({ links, pathname }: { links: ILink[]; pathname: string }) {
 
 export function MobileNavToggle({
   isExpanded,
-  listId,
+  controls,
   onClick,
 }: {
   isExpanded: boolean;
-  listId: string;
+  controls: string;
   onClick: () => void;
 }) {
   const label = isExpanded ? "Close main menu" : "Open main menu";
@@ -104,7 +104,7 @@ export function MobileNavToggle({
     <button
       className={styles.mobileNavToggle}
       aria-expanded={isExpanded}
-      aria-controls={listId}
+      aria-controls={controls}
       aria-haspopup="menu"
       aria-label={label}
       onClick={onClick}

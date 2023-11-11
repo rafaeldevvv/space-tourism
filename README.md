@@ -179,6 +179,9 @@ The `max()` function takes the biggest value.
 - [How to define css variables in style attribute in React and TypeScript](https://stackoverflow.com/questions/52005083/how-to-define-css-variables-in-style-attribute-in-react-and-typescript)
 - [TypeScript Error : Unexpected token `div`. Expected jsx identifier](https://stackoverflow.com/questions/75213927/typescript-error-unexpected-token-div-expected-jsx-identifier)
 - [Why margin on child element moves the parent element in CSS ?](https://www.geeksforgeeks.org/why-margin-on-child-element-moves-the-parent-element-in-css/)
+- [How to Load Data from a File in Next.js](https://vercel.com/guides/loading-static-file-nextjs-api-route)
+- [Escape string for use in Javascript regex [duplicate]](https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex)
+- [ARIA: tablist role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tablist_role)
 
 ## Author
 
