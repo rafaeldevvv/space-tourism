@@ -1,6 +1,7 @@
 "use client";
 
 /* styles */
+import "../globals.css";
 import styles from "./destination.module.css";
 import utilities from "../shared-css/utility-classes.module.css";
 import components from "../shared-css/components.module.css";
@@ -37,73 +38,81 @@ export default function DestinationsTabs({
   )!;
 
   return (
-    <div className={classes(utilities.gridContainer)}>
-      <div>
+    <div>
+      <div className={utilities.container}>
         <h1 className={classes(utilities.numberedTitle)}>
           <span>01</span> Pick your destination
         </h1>
-        <Image
-          src={selectedDestination.images.png}
-          alt={selectedDestination.imageAlt}
-          width="445"
-          height="445"
-        />
       </div>
-      <div>
-        <TabList
-          className={classes(components.underlineIndicators, utilities.flex)}
-          label="Destinations"
-          onArrowDown={(key) => {
-            if (key === "ArrowRight") {
-              setSelectedDestinationIndex((i) =>
-                i === destinations.length - 1 ? 0 : i + 1
+      <div className={classes(utilities.gridContainer)}>
+        <div>
+          <Image
+            src={selectedDestination.images.png}
+            alt={selectedDestination.imageAlt}
+            width="445"
+            height="445"
+          />
+        </div>
+        <div>
+          <TabList
+            className={classes(
+              components.underlineIndicators,
+              utilities.flex,
+              styles.tablist
+            )}
+            label="Destinations"
+            onArrowDown={(key) => {
+              if (key === "ArrowRight") {
+                setSelectedDestinationIndex((i) =>
+                  i === destinations.length - 1 ? 0 : i + 1
+                );
+              } else if (key === "ArrowLeft") {
+                setSelectedDestinationIndex((i) =>
+                  i === 0 ? destinations.length - 1 : i - 1
+                );
+              }
+            }}
+            onHomeDown={() => {
+              setSelectedDestinationIndex(0);
+            }}
+            onEndDown={() => {
+              setSelectedDestinationIndex(destinations.length - 1);
+            }}
+          >
+            {names.map((name, index) => {
+              return (
+                <Tab
+                  key={name}
+                  active={index === selectedDestinationIndex}
+                  pos={index + 1}
+                  controls={descriptionsIds[index]}
+                  className={classes(
+                    styles.tab,
+                    utilities.textWhite,
+                    utilities.fs300
+                  )}
+                  id={namesIds[index]}
+                  onClick={() => setSelectedDestinationIndex(index)}
+                >
+                  {name}
+                </Tab>
               );
-            } else if (key === "ArrowLeft") {
-              setSelectedDestinationIndex((i) =>
-                i === 0 ? destinations.length - 1 : i - 1
-              );
-            }
-          }}
-          onHomeDown={() => {
-            setSelectedDestinationIndex(0);
-          }}
-          onEndDown={() => {
-            setSelectedDestinationIndex(destinations.length - 1);
-          }}
-        >
-          {names.map((name, index) => {
+            })}
+          </TabList>
+          {destinations.map((d, i) => {
             return (
-              <Tab
-                key={name}
-                active={index === selectedDestinationIndex}
-                pos={index + 1}
-                controls={descriptionsIds[index]}
-                className={classes(
-                  styles.tab,
-                  utilities.textWhite,
-                  utilities.fs300
-                )}
-                id={namesIds[index]}
-                onClick={() => setSelectedDestinationIndex(index)}
+              <TabPanel
+                key={d.name}
+                id={descriptionsIds[i]}
+                labelledBy={namesIds[i]}
+                className={styles.utilities}
+                active={selectedDestination.name === d.name}
               >
-                {name}
-              </Tab>
+                <DestiationInfo destination={d} />
+              </TabPanel>
             );
           })}
-        </TabList>
-        {destinations.map((d, i) => {
-          return (
-            <TabPanel
-              key={d.name}
-              id={descriptionsIds[i]}
-              labelledBy={namesIds[i]}
-              className={styles.utilities}
-              active={selectedDestination.name === d.name}
-            >
-              <DestiationInfo destination={d} />
-            </TabPanel>
-          );
-        })}
+        </div>
       </div>
     </div>
   );
@@ -152,7 +161,7 @@ export function DestiationInfo({ destination }: { destination: Destination }) {
 
       <hr className={styles.separator} />
 
-      <div className={utilities.flex}>
+      <div className={classes(utilities.flex, styles.infoBlocks)}>
         <InfoBlock title="Avg. Distance" info={destination.distance} />
         <InfoBlock title="Est. travel time" info={destination.travel} />
       </div>
