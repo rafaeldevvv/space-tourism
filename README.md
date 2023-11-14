@@ -181,10 +181,13 @@ The `max()` function takes the biggest value.
 - [Why margin on child element moves the parent element in CSS ?](https://www.geeksforgeeks.org/why-margin-on-child-element-moves-the-parent-element-in-css/)
 - [How to Load Data from a File in Next.js](https://vercel.com/guides/loading-static-file-nextjs-api-route)
 - [Escape string for use in Javascript regex [duplicate]](https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex)
-- [ARIA: tablist role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tablist_role)
+- [ARIA: `tablist` role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tablist_role)
 - [Naming CSS Stuff Is Really Hard](https://sparkbox.com/foundry/naming_css_stuff_is_really_hard)
 - [CSS Naming Conventions that Will Save You Hours of Debugging](https://www.freecodecamp.org/news/css-naming-conventions-that-will-save-you-hours-of-debugging-35cea737d849/)
 - [Semantic Commit Messages](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
+- [Window: `matchMedia()` method](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia)
+- [Window: `devicePixelRatio` property](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio) - The example using `matchMedia()` was useful.
+- [`<picture>`: The Picture element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)
 
 ## Author
 

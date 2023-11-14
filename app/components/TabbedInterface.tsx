@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import { ArrowKeys } from "../typescript/types";
 
 export function Tab({
   children,
@@ -59,7 +60,7 @@ export function TabList({
   label?: string;
   orientation?: "horizontal" | "vertical";
   style?: React.CSSProperties
-  onArrowDown: (key: string) => void;
+  onArrowDown: (key: ArrowKeys) => void;
   onHomeDown: () => void;
   onEndDown: () => void;
 }) {
@@ -71,7 +72,11 @@ export function TabList({
       onKeyDown={(e) => {
         switch (e.key) {
           case "ArrowDown":
-          case "ArrowUp":
+          case "ArrowUp": {
+            if (orientation === "vertical") {
+              e.preventDefault();
+            }
+          }
           case "ArrowLeft":
           case "ArrowRight": {
             onArrowDown(e.key);

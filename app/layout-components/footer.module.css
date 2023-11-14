@@ -1,24 +1,12 @@
 .primaryFooter {
-   margin-block-end: 3rem;
-   text-align: center;
-   background-color: hsl(var(--clr-dark) / .4);
-   max-width: max-content;
-   margin-inline: auto;
-   padding-block: 1rem;
- }
+  margin-block-end: 1rem;
+  text-align: center;
+  background-color: hsl(var(--clr-dark) / 0.4);
+  max-width: max-content;
+  margin-inline: auto;
+  padding-block: 1rem;
+}
 
- .primaryFooter a:hover {
-   text-decoration: none;
- }
- 
- @media (min-width: 40em) {
-   .primaryFooter {
-     /* margin-block-start: 9rem; */
-   }
- }
- 
- @media (min-width: 55em) {
-   .primaryFooter {
-     margin-block-start: 0;
-   }
- }
+.primaryFooter a:hover {
+  text-decoration: none;
+}

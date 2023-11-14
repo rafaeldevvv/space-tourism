@@ -1,0 +1,13 @@
+.gridContainer {
+   --container-gap: 0;
+   padding: 0;
+}
+
+@media (max-width: 50em) {
+   .gridContainer > :first-child {
+      order: 1;
+   }
+   .gridContainer > :last-child {
+      order: 0;
+   }
+}

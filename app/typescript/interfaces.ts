@@ -26,11 +26,12 @@ export interface Technology {
       portrait: string;
       landscape: string;
    };
+   imageAlt: string;
    description: string;
 }
 
 export interface SpaceData {
    destinations: Destination[];
    crew: Member[];
-   technology: Technology[];
+   technologies: Technology[];
  }
