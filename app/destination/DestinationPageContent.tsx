@@ -3,7 +3,7 @@
 /* styles */
 import "../globals.css";
 import styles from "./destination.module.css";
-import utilities from "../shared-css/utility-classes.module.css";
+import utilityClasses from "../shared-css/utility-classes.module.css";
 import components from "../shared-css/components.module.css";
 
 /* utils */
@@ -15,10 +15,10 @@ import { Destination } from "../typescript/interfaces";
 /* components */
 import Image from "next/image";
 import { Tab, TabList, TabPanel } from "../components/TabbedInterface";
+import NumberedTitle from "../components/NumberedTitle";
 
 /* react */
 import { useState } from "react";
-import getIdFrom from "../utils/getIdFrom";
 
 export default function DestinationsTabs({
   destinations,
@@ -28,10 +28,8 @@ export default function DestinationsTabs({
   const [selectedDestinationIndex, setSelectedDestinationIndex] = useState(0);
 
   const names = destinations.map((d) => d.name);
-  const namesIds = destinations.map((d) =>
-    getIdFrom(d.name, { transform: "lowercase" })
-  );
-  const descriptionsIds = destinations.map((d) => getIdFrom(d.description, {}));
+  const tabsIds = destinations.map((_, i) => `destination-tab-${i}`);
+  const tabpanelsIds = destinations.map((_, i) => `destination-tabpanel-${i}`);
 
   const selectedDestination = destinations.find(
     (_, i) => i === selectedDestinationIndex
@@ -39,12 +37,8 @@ export default function DestinationsTabs({
 
   return (
     <div>
-      <div className={utilities.container}>
-        <h1 className={classes(utilities.numberedTitle)}>
-          <span>01</span> Pick your destination
-        </h1>
-      </div>
-      <div className={classes(utilities.gridContainer)}>
+      <NumberedTitle number={1} title="Pick your destination" />
+      <div className={classes(utilityClasses.gridContainer)}>
         <div>
           <Image
             src={selectedDestination.images.png}
@@ -57,7 +51,9 @@ export default function DestinationsTabs({
           <TabList
             className={classes(
               components.underlineIndicators,
-              utilities.flex,
+              utilityClasses.flex,
+              utilityClasses.justifyContentCenterPortrait,
+              utilityClasses.justifyContentStartLandscape,
               styles.tablist
             )}
             label="Destinations"
@@ -85,13 +81,13 @@ export default function DestinationsTabs({
                   key={name}
                   active={index === selectedDestinationIndex}
                   pos={index + 1}
-                  controls={descriptionsIds[index]}
+                  controls={tabpanelsIds[index]}
                   className={classes(
                     styles.tab,
-                    utilities.textWhite,
-                    utilities.fs300
+                    utilityClasses.textWhite,
+                    utilityClasses.fs300
                   )}
-                  id={namesIds[index]}
+                  id={tabsIds[index]}
                   onClick={() => setSelectedDestinationIndex(index)}
                 >
                   {name}
@@ -99,19 +95,21 @@ export default function DestinationsTabs({
               );
             })}
           </TabList>
-          {destinations.map((d, i) => {
-            return (
-              <TabPanel
-                key={d.name}
-                id={descriptionsIds[i]}
-                labelledBy={namesIds[i]}
-                className={styles.utilities}
-                active={selectedDestination.name === d.name}
-              >
-                <DestiationInfo destination={d} />
-              </TabPanel>
-            );
-          })}
+          <div>
+            {destinations.map((d, i) => {
+              return (
+                <TabPanel
+                  key={d.name}
+                  id={tabpanelsIds[i]}
+                  labelledBy={tabsIds[i]}
+                  className={styles.utilities}
+                  active={selectedDestination.name === d.name}
+                >
+                  <DestinationInfo destination={d} />
+                </TabPanel>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
@@ -123,19 +121,19 @@ export function InfoBlock({ title = "Title", info = "Info" }) {
     <section>
       <h3
         className={classes(
-          utilities.uppercase,
-          utilities.textLight,
-          utilities.fs200,
-          utilities.letterSpacing3,
-          utilities.ffSansCond
+          utilityClasses.uppercase,
+          utilityClasses.textLight,
+          utilityClasses.fs200,
+          utilityClasses.letterSpacing3,
+          utilityClasses.ffSansCond
         )}
       >
         {title}
       </h3>
       <p
         className={classes(
-          utilities.uppercase,
-          utilities.ffSerif,
+          utilityClasses.uppercase,
+          utilityClasses.ffSerif,
           styles.fs550
         )}
       >
@@ -145,23 +143,25 @@ export function InfoBlock({ title = "Title", info = "Info" }) {
   );
 }
 
-export function DestiationInfo({ destination }: { destination: Destination }) {
+export function DestinationInfo({ destination }: { destination: Destination }) {
   return (
     <article>
       <h2
         className={classes(
-          utilities.fs800,
-          utilities.ffSerif,
-          utilities.uppercase
+          utilityClasses.fs800,
+          utilityClasses.ffSerif,
+          utilityClasses.uppercase
         )}
       >
         {destination.name}
       </h2>
-      <p className={classes(utilities.textLight)}>{destination.description}</p>
+      <p className={classes(utilityClasses.textLight)}>
+        {destination.description}
+      </p>
 
       <hr className={styles.separator} />
 
-      <div className={classes(utilities.flex, styles.infoBlocks)}>
+      <div className={classes(utilityClasses.flex, styles.infoBlocks)}>
         <InfoBlock title="Avg. Distance" info={destination.distance} />
         <InfoBlock title="Est. travel time" info={destination.travel} />
       </div>

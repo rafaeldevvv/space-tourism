@@ -24,7 +24,7 @@ const bellefair = Bellefair({
 });
 
 export const metadata: Metadata = {
-  title: "Frontend Mentor | Space tourism website",
+  title: "Home | Space tourism",
   description: "Buckle up and prepare yourself to go to space!",
 };
 

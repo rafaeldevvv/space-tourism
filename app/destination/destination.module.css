@@ -5,13 +5,6 @@
 .tablist {
   --underline-gap: 0.5rem;
   margin-bottom: 1rem;
-  justify-content: center;
-}
-
-@media (min-width: 50em) and (orientation: landscape) {
-  .tablist {
-    justify-content: start;
-  }
 }
 
 .separator {

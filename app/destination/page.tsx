@@ -1,21 +1,17 @@
-import { promises as fs } from "fs";
-
+/* typescript */
 import { Metadata } from "next";
 
 /* styles */
 import "../globals.css";
 
-/* typescript */
-import { SpaceData } from "../typescript/interfaces";
-
 /* components */
 import DestinationPageContent from "./DestinationPageContent";
 
 /* utils */
-import { getSpaceData } from "../utils";
+import getSpaceData from "../utils/getSpaceData";
 
 export const metadata: Metadata = {
-  title: "Destination Page",
+  title: "Destinations | Space Tourism",
   description: "All the destinations we offer, including the Moon, Mars, Europa and Titan",
 };
 

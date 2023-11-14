@@ -12,11 +12,12 @@ export interface Destination {
    travel: string;
 }
 
-export interface CrewPerson {
+export interface Member {
    name: string;
    images: Images;
    role: string;
    bio: string;
+   imageAlt: string
 }
 
 export interface Technology {
@@ -30,6 +31,6 @@ export interface Technology {
 
 export interface SpaceData {
    destinations: Destination[];
-   crew: CrewPerson[];
+   crew: Member[];
    technology: Technology[];
  }

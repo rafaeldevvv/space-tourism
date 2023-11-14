@@ -1,8 +1,5 @@
 import { useRef, useEffect } from "react";
 
-import classes from "../utils/classes";
-import utilities from "../shared-css/utility-classes.module.css";
-
 export function Tab({
   children,
   active,
@@ -51,6 +48,8 @@ export function TabList({
   className = "tablist",
   children,
   label = "Tabs",
+  orientation = "horizontal",
+  style = {},
   onArrowDown,
   onHomeDown = () => {},
   onEndDown = () => {},
@@ -58,6 +57,8 @@ export function TabList({
   className?: string;
   children: React.ReactNode;
   label?: string;
+  orientation?: "horizontal" | "vertical";
+  style?: React.CSSProperties
   onArrowDown: (key: string) => void;
   onHomeDown: () => void;
   onEndDown: () => void;
@@ -88,6 +89,8 @@ export function TabList({
           }
         }
       }}
+      aria-orientation={orientation}
+      style={style}
     >
       {children}
     </div>

@@ -1,0 +1,18 @@
+.gridContainer {
+  --container-gap: 0px;
+  row-gap: 0;
+  padding-block: 4rem 2rem;
+}
+
+@media (min-width: 35em) {
+  .gridContainer {
+    padding-block: 4rem 0;
+  }
+}
+
+@media (min-width: 50em) and (orientation: landscape) {
+  .gridContainer {
+    --container-gap: 2rem;
+    place-items: start;
+  }
+}

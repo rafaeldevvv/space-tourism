@@ -9,6 +9,18 @@
   gap: var(--gap, 1rem);
 }
 
+@media (orientation: portrait), (max-width: 50em) { 
+  .justifyContentCenterPortrait { 
+    justify-content: center;
+  }
+}
+
+@media (min-width: 50em) and (orientation: landscape) { 
+  .justifyContentStartLandscape {
+    justify-content: start;
+  }
+}
+
 .grid {
   display: grid;
   gap: var(--gap, 1rem);
@@ -70,8 +82,8 @@
     column-gap: var(--container-gap, 2rem);
     grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(2rem, 1fr);
   }
-
-  .gridContainer * {
+  
+  .gridContainer p {
     margin-inline: 0;
   }
   
@@ -82,6 +94,7 @@
   .gridContainer > *:last-child {
     grid-column: 3;
   }
+
 }
 
 .srOnly {
@@ -207,26 +220,12 @@
   text-transform: uppercase;
   letter-spacing: 4.72px;
   font-family: var(--ff-sans-cond);
-  text-align: center;
-  padding-block: 4em 2rem;
 }
 
 .numberedTitle span {
   color: hsl(var(--clr-white) / 0.25);
   font-weight: 700;
   margin-inline-end: 0.5em;
-}
-
-@media (min-width: 35em) {
-  .numberedTitle {
-    text-align: left;
-  }
-}
-
-@media (min-width: 50em) and (orientation: landscape) {
-  .numberedTitle {
-    margin-inline-start: 2rem;
-  }
 }
 
 /* spacing */

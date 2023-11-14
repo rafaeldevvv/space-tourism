@@ -182,6 +182,8 @@ The `max()` function takes the biggest value.
 - [How to Load Data from a File in Next.js](https://vercel.com/guides/loading-static-file-nextjs-api-route)
 - [Escape string for use in Javascript regex [duplicate]](https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex)
 - [ARIA: tablist role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tablist_role)
+- [Naming CSS Stuff Is Really Hard](https://sparkbox.com/foundry/naming_css_stuff_is_really_hard)
+- [CSS Naming Conventions that Will Save You Hours of Debugging](https://www.freecodecamp.org/news/css-naming-conventions-that-will-save-you-hours-of-debugging-35cea737d849/)
 
 ## Author
 
