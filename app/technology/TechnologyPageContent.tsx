@@ -77,7 +77,7 @@ export default function TechnologyPageContent({
   }, []);
 
   return (
-    <div>
+    <div className={utilityClasses.gridAlignContentCenter}>
       <NumberedTitle title="space launch 101" number={3} />
       <div
         className={classes(

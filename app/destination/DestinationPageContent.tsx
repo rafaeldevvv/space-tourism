@@ -36,7 +36,7 @@ export default function DestinationsTabs({
   )!;
 
   return (
-    <div>
+    <div className={utilityClasses.gridAlignContentCenter}>
       <NumberedTitle number={1} title="Pick your destination" />
       <div className={classes(utilityClasses.gridContainer)}>
         <div>

@@ -94,7 +94,12 @@
   .gridContainer > *:last-child {
     grid-column: 3;
   }
+}
 
+.gridAlignContentCenter {
+  display: grid;
+  grid-template-rows: max-content max-content;
+  align-content: center;
 }
 
 .srOnly {

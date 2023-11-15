@@ -33,7 +33,7 @@ export default function CrewTab({ crew }: { crew: Member[] }) {
   const tabsIds = new Array(crew.length).map((_, i) => `crew-tab-${i}`);
 
   return (
-    <div>
+    <div className={utilityClasses.gridAlignContentCenter}>
       <NumberedTitle title="Meet your crew" number={2} />
       <div
         className={classes(

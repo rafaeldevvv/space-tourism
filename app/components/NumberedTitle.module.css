@@ -8,12 +8,14 @@
 @media (min-width: 35em) {
   .gridContainer {
     padding-block: 4rem 0;
+    padding-inline: 2rem;
+    place-items: start;
   }
 }
 
 @media (min-width: 50em) and (orientation: landscape) {
   .gridContainer {
     --container-gap: 2rem;
-    place-items: start;
+    place-items: center;
   }
 }

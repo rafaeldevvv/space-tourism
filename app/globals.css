@@ -33,7 +33,7 @@
   }
 }
 
-@media (min-width: 50 em) {
+@media (min-width: 50em) {
   :root {
     --fs-800: 6.25rem;
     --fs-700: 3.5rem;
