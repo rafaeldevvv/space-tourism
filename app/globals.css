@@ -33,7 +33,7 @@
   }
 }
 
-@media (min-width: 45em) {
+@media (min-width: 50 em) {
   :root {
     --fs-800: 6.25rem;
     --fs-700: 3.5rem;
@@ -139,7 +139,7 @@ body {
 
 /* tablet */
 
-@media (min-width: 40em) {
+@media (min-width: 35em) {
   .home {
     background-image: url("/assets/home/background-home-tablet.jpg");
   }

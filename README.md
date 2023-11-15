@@ -173,6 +173,48 @@ The `max()` function takes the biggest value.
 }
 ```
 
+I can use `matchMedia()` to test the document with a media query and watch changes in it.
+
+```js
+useEffect(() => {
+    /* 
+      every time the change event is fired, 
+      we create a new mql object, and because of that we
+      have to remove the event handler on the previous mql and
+      assign an updated remove function to this variable 
+    */
+
+    let remove: null | (() => void) = null;
+
+    const updateOrientation = () => {
+      if (remove !== null) remove();
+
+      /* create a MediaQueryList object */
+      const mql = window.matchMedia(
+        "(min-width: 50em) and (orientation: landscape)"
+      );
+
+      /* register change event handler */
+      mql.addEventListener("change", updateOrientation);
+
+      /* update `remove()` function */
+      remove = () => {
+        mql.removeEventListener("change", updateOrientation);
+      };
+
+      /* check matching and set orientation */
+      if (mql.matches) setOrientation("vertical");
+      else setOrientation("horizontal");
+    };
+
+    updateOrientation();
+
+    return () => {
+      if (remove !== null) remove();
+    };
+  });
+```
+
 ### Useful Resources
 
 - [Space Travel course with Kevin Powell](https://scrimba.com/learn/spacetravel)

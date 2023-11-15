@@ -13,12 +13,13 @@ import pageStyles from "./technology.module.css";
 
 /* util functions */
 import createIds from "../utils/createIds";
+import classes from "../utils/classes";
 
 /* components */
 import Image from "next/image";
 import { Tab, TabList, TabPanel } from "../components/TabbedInterface";
-import classes from "../utils/classes";
 import VisuallyHidden from "../components/VisuallyHidden";
+import NumberedTitle from "../components/NumberedTitle";
 
 export default function TechnologyPageContent({
   technologies,
@@ -43,7 +44,7 @@ export default function TechnologyPageContent({
       we create a new mql object, and because of that we
       have to remove the event handler on the previous mql and
       assign an updated remove function to this variable 
-   */
+    */
 
     let remove: null | (() => void) = null;
 
@@ -73,117 +74,127 @@ export default function TechnologyPageContent({
     return () => {
       if (remove !== null) remove();
     };
-  });
+  }, []);
 
   return (
-    <div className={classes(utilityClasses.gridContainer, pageStyles.gridContainer)}>
-      <div>
-        <TabList
-          label="Technologies"
-          className={classes(
-            componentsStyles.numberIndicators,
-            utilityClasses.flex,
-            utilityClasses.justifyContentCenterPortrait
-          )}
-          orientation={orientation}
-          onArrowDown={(arrow) => {
-            console.log(orientation, arrow);
-            if (orientation === "horizontal") {
-              if (arrow === "ArrowRight") {
-                setSelectedTechIndex((i) =>
-                  i === technologies.length - 1 ? 0 : i + 1
-                );
-              } else if (arrow === "ArrowLeft") {
-                setSelectedTechIndex((i) =>
-                  i === 0 ? technologies.length - 1 : i - 1
-                );
-              }
-            } else {
-              if (arrow === "ArrowDown") {
-                setSelectedTechIndex((i) =>
-                  i === technologies.length - 1 ? 0 : i + 1
-                );
-              } else if (arrow === "ArrowUp") {
-                setSelectedTechIndex((i) =>
-                  i === 0 ? technologies.length - 1 : i - 1
-                );
-              }
-            }
-          }}
-          onEndDown={() => setSelectedTechIndex(technologies.length - 1)}
-          onHomeDown={() => setSelectedTechIndex(0)}
-        >
-          {technologies.map((tech, index) => {
-            return (
-              <Tab
-                key={tech.name}
-                pos={index + 1}
-                controls={tabpanelsIds[index]}
-                active={selectedTechIndex === index}
-                onClick={() => setSelectedTechIndex(index)}
-                id={tabsIds[index]}
-                className={classes(
-                  utilityClasses.fs600,
-                  utilityClasses.ffSerif
-                )}
-              >
-                {index + 1} <VisuallyHidden>{tech.name}</VisuallyHidden>
-              </Tab>
-            );
-          })}
-        </TabList>
-
-        <section>
-          <h2
+    <div>
+      <NumberedTitle title="space launch 101" number={3} />
+      <div
+        className={classes(
+          pageStyles.gridContainer,
+          utilityClasses.gridContainer,
+        )}
+      >
+        <div className={classes(utilityClasses.flex, pageStyles.tablistAndSection)}>
+          <TabList
+            label="Technologies"
             className={classes(
-              utilityClasses.textLight,
-              utilityClasses.uppercase,
-              utilityClasses.fs200,
-              utilityClasses.ffSansCond,
-              utilityClasses.letterSpacing2
+              componentsStyles.numberIndicators,
+              utilityClasses.flex,
+              utilityClasses.justifyContentCenterPortrait,
+              pageStyles.tablist
             )}
+            orientation={orientation}
+            onArrowDown={(arrow) => {
+              if (orientation === "horizontal") {
+                if (arrow === "ArrowRight") {
+                  setSelectedTechIndex((i) =>
+                    i === technologies.length - 1 ? 0 : i + 1
+                  );
+                } else if (arrow === "ArrowLeft") {
+                  setSelectedTechIndex((i) =>
+                    i === 0 ? technologies.length - 1 : i - 1
+                  );
+                }
+              } else {
+                if (arrow === "ArrowDown") {
+                  setSelectedTechIndex((i) =>
+                    i === technologies.length - 1 ? 0 : i + 1
+                  );
+                } else if (arrow === "ArrowUp") {
+                  setSelectedTechIndex((i) =>
+                    i === 0 ? technologies.length - 1 : i - 1
+                  );
+                }
+              }
+            }}
+            onEndDown={() => setSelectedTechIndex(technologies.length - 1)}
+            onHomeDown={() => setSelectedTechIndex(0)}
           >
-            The terminology...
-          </h2>
-          {technologies.map((tech, index) => {
-            return (
-              <TabPanel
-                key={tech.name}
-                id={tabpanelsIds[index]}
-                labelledBy={tabsIds[index]}
-                active={index === selectedTechIndex}
-              >
-                <article>
-                  <h3
-                    className={classes(
-                      utilityClasses.fs700,
-                      utilityClasses.ffSerif,
-                      utilityClasses.uppercase
-                    )}
-                  >
-                    {tech.name}
-                  </h3>
-                  <p className={utilityClasses.textLight}>{tech.description}</p>
-                </article>
-              </TabPanel>
-            );
-          })}
-        </section>
-      </div>
-      <div>
-        <picture>
-          <source
-            srcSet={selectedTechnology.images.portrait}
-            media="(min-width: 50em) and (orientation: landscape)"
-          />
-          <source srcSet={selectedTechnology.images.landscape} />
-          <Image
-            src={selectedTechnology.images.portrait}
-            alt={selectedTechnology.imageAlt}
-            width="768"
-            height="527"
-          />
-        </picture>
+            {technologies.map((tech, index) => {
+              return (
+                <Tab
+                  key={tech.name}
+                  pos={index + 1}
+                  controls={tabpanelsIds[index]}
+                  active={selectedTechIndex === index}
+                  onClick={() => setSelectedTechIndex(index)}
+                  id={tabsIds[index]}
+                  className={classes(
+                    utilityClasses.fs600,
+                    utilityClasses.ffSerif
+                  )}
+                >
+                  {index + 1} <VisuallyHidden>{tech.name}</VisuallyHidden>
+                </Tab>
+              );
+            })}
+          </TabList>
+
+          <section className={classes(pageStyles.terminologySection, utilityClasses.flow)}>
+            <h2
+              className={classes(
+                utilityClasses.textLight,
+                utilityClasses.uppercase,
+                utilityClasses.fs200,
+                utilityClasses.ffSansCond,
+                utilityClasses.letterSpacing2,
+              )}
+            >
+              The terminology...
+            </h2>
+            {technologies.map((tech, index) => {
+              return (
+                <TabPanel
+                  key={tech.name}
+                  id={tabpanelsIds[index]}
+                  labelledBy={tabsIds[index]}
+                  active={index === selectedTechIndex}
+                >
+                  <article className={classes(pageStyles.tabpanelContent, utilityClasses.flow)}>
+                    <h3
+                      className={classes(
+                        utilityClasses.fs700,
+                        utilityClasses.ffSerif,
+                        utilityClasses.uppercase
+                      )}
+                    >
+                      {tech.name}
+                    </h3>
+                    <p className={utilityClasses.textLight}>
+                      {tech.description}
+                    </p>
+                  </article>
+                </TabPanel>
+              );
+            })}
+          </section>
+        </div>
+        <div>
+          <picture>
+            <source
+              srcSet={selectedTechnology.images.portrait}
+              media="(min-width: 50em) and (orientation: landscape)"
+            />
+            <source srcSet={selectedTechnology.images.landscape} />
+            <Image
+              src={selectedTechnology.images.portrait}
+              alt={selectedTechnology.imageAlt}
+              width="768"
+              height="527"
+            />
+          </picture>
+        </div>
       </div>
     </div>
   );

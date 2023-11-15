@@ -1,13 +1,53 @@
 .gridContainer {
    --container-gap: 0;
-   padding: 0;
+   padding-inline: 0 !important;
 }
 
-@media (max-width: 50em) {
+.tablistAndSection {
+   flex-direction: column;
+   --gap: 2rem;
+   padding-inline: 2rem;
+}
+
+.tablist {
+   --gap: 1rem;
+}
+
+.terminologySection {
+  --flow-space: .5rem;  
+}
+
+.tabpanelContent {
+   --flow-space: 1rem;
+}
+
+@media (max-width: 50em), (orientation: portrait) {
    .gridContainer > :first-child {
       order: 1;
    }
    .gridContainer > :last-child {
       order: 0;
+   }
+}
+
+@media (min-width: 35em) {
+   .terminologySection {
+      --flow-space: .8rem;
+    }
+}
+
+@media (min-width: 50em) {
+   .gridContainer {
+      grid-template-columns: minmax(0rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(0rem, 1fr);
+   }
+
+   .tablistAndSection {
+      flex-direction: row;
+   }
+   
+   .tablist {
+      --gap: 1.5rem;
+      flex-direction: column;
+      justify-content: center;
    }
 }
