@@ -4,7 +4,7 @@
 import "../globals.css";
 import styles from "./destination.module.css";
 import utilityClasses from "../shared-css/utility-classes.module.css";
-import components from "../shared-css/components.module.css";
+import componentsStyles from "../shared-css/components.module.css";
 
 /* utils */
 import classes from "../utils/classes";
@@ -50,7 +50,7 @@ export default function DestinationsTabs({
         <div>
           <TabList
             className={classes(
-              components.underlineIndicators,
+              componentsStyles.underlineIndicators,
               utilityClasses.flex,
               utilityClasses.justifyContentCenterPortrait,
               utilityClasses.justifyContentStartLandscape,
@@ -89,6 +89,7 @@ export default function DestinationsTabs({
                   )}
                   id={tabsIds[index]}
                   onClick={() => setSelectedDestinationIndex(index)}
+                  activeClassname={componentsStyles.active}
                 >
                   {name}
                 </Tab>

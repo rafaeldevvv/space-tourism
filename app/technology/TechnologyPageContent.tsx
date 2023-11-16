@@ -9,7 +9,7 @@ import { Technology } from "../typescript/interfaces";
 /* styles */
 import utilityClasses from "../shared-css/utility-classes.module.css";
 import componentsStyles from "../shared-css/components.module.css";
-import pageStyles from "./technology.module.css";
+import pageStyles from "./Technology.module.css";
 
 /* util functions */
 import createIds from "../utils/createIds";
@@ -78,7 +78,7 @@ export default function TechnologyPageContent({
 
   return (
     <div className={utilityClasses.gridAlignContentCenter}>
-      <NumberedTitle title="space launch 101" number={3} />
+      <NumberedTitle title="space launch 101" number={3} center={false} />
       <div
         className={classes(
           pageStyles.gridContainer,
@@ -134,6 +134,7 @@ export default function TechnologyPageContent({
                     utilityClasses.fs600,
                     utilityClasses.ffSerif
                   )}
+                  activeClassname={componentsStyles.active}
                 >
                   {index + 1} <VisuallyHidden>{tech.name}</VisuallyHidden>
                 </Tab>

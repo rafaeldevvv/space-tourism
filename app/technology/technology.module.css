@@ -38,7 +38,7 @@
 
 @media (min-width: 50em) and (orientation: landscape) {
    .gridContainer {
-      grid-template-columns: minmax(0rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(0rem, 1fr);
+      grid-template-columns: minmax(0rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(0rem, 1fr) !important;
    }
 
    .tablistAndSection {

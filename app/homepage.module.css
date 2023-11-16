@@ -22,9 +22,9 @@
   .gridContainer {
     /* pushing it down to the bottom */
     --container-gap: 1rem;
-    padding-block: 15rem max(7rem, 30vh);
-    align-items: end;
-    margin: 0;
+    padding-block: 15rem max(7rem, 30vh) !important;
+    align-items: end !important;
+    margin: 0 !important;
   }
 
   .textWrapper p {

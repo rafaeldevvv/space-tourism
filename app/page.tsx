@@ -1,6 +1,6 @@
 import components from "./shared-css/components.module.css";
 import utilities from "./shared-css/utility-classes.module.css";
-import homepageStyles from "./homepage.module.css";
+import homepageStyles from "./Homepage.module.css";
 import Link from "next/link";
 import classes from "./utils/classes";
 

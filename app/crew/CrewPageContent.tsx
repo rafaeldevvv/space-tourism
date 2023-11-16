@@ -9,7 +9,7 @@ import classes from "../utils/classes";
 /* styles */
 import utilityClasses from "../shared-css/utility-classes.module.css";
 import componentsStyles from "../shared-css/components.module.css";
-import pageStyles from "./crew.module.css";
+import pageStyles from "./Crew.module.css";
 
 /* tyepscript */
 import { Member } from "../typescript/interfaces";
@@ -34,7 +34,7 @@ export default function CrewTab({ crew }: { crew: Member[] }) {
 
   return (
     <div className={utilityClasses.gridAlignContentCenter}>
-      <NumberedTitle title="Meet your crew" number={2} />
+      <NumberedTitle title="Meet your crew" number={2} center={false} />
       <div
         className={classes(
           utilityClasses.gridContainer,
@@ -131,6 +131,7 @@ export default function CrewTab({ crew }: { crew: Member[] }) {
                   controls={tabpanelsIds[index]}
                   id={tabsIds[index]}
                   onClick={() => setSelectedMemberIndex(index)}
+                  activeClassname={componentsStyles.active}
                 >
                   <VisuallyHidden>{roles[index]}</VisuallyHidden>
                 </Tab>

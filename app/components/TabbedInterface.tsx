@@ -8,7 +8,8 @@ export function Tab({
   controls,
   onClick,
   id,
-  className = "tab",
+  className = "",
+  activeClassname = "active"
 }: {
   children: React.ReactNode;
   active: boolean;
@@ -17,6 +18,7 @@ export function Tab({
   id: string;
   onClick: () => void;
   className?: string;
+  activeClassname?: string;
 }) {
   const tabRef = useRef<null | HTMLButtonElement>(null);
 
@@ -26,7 +28,7 @@ export function Tab({
     }
   }, [active]);
 
-  if (active) className += " active";
+  if (active) className += " " + activeClassname;
 
   return (
     <button
@@ -46,9 +48,9 @@ export function Tab({
 }
 
 export function TabList({
-  className = "tablist",
+  className = "",
   children,
-  label = "Tabs",
+  label,
   orientation = "horizontal",
   style = {},
   onArrowDown,
@@ -57,7 +59,7 @@ export function TabList({
 }: {
   className?: string;
   children: React.ReactNode;
-  label?: string;
+  label: string;
   orientation?: "horizontal" | "vertical";
   style?: React.CSSProperties
   onArrowDown: (key: ArrowKeys) => void;
@@ -103,7 +105,7 @@ export function TabList({
 }
 
 export function TabPanel({
-  className = "tabpanel",
+  className = "",
   id,
   labelledBy,
   children,
