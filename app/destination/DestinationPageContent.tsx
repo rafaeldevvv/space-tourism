@@ -8,6 +8,7 @@ import componentsStyles from "../shared-css/components.module.css";
 
 /* utils */
 import classes from "../utils/classes";
+import createIds from "../utils/createIds";
 
 /* typescript */
 import { Destination } from "../typescript/interfaces";
@@ -28,8 +29,11 @@ export default function DestinationsTabs({
   const [selectedDestinationIndex, setSelectedDestinationIndex] = useState(0);
 
   const names = destinations.map((d) => d.name);
-  const tabsIds = destinations.map((_, i) => `destination-tab-${i}`);
-  const tabpanelsIds = destinations.map((_, i) => `destination-tabpanel-${i}`);
+
+  /* these ids are necessary because we need to relate tabs and tabpanels */
+  const tabsIds = createIds(destinations.length, "destination-tab");
+  const tabpanelsIds = createIds(destinations.length, "destination-tabpanel");
+  const imagesIds = createIds(destinations.length, "destination-image");
 
   const selectedDestination = destinations.find(
     (_, i) => i === selectedDestinationIndex
@@ -40,12 +44,21 @@ export default function DestinationsTabs({
       <NumberedTitle number={1} title="Pick your destination" />
       <div className={classes(utilityClasses.gridContainer)}>
         <div>
-          <Image
-            src={selectedDestination.images.png}
-            alt={selectedDestination.imageAlt}
-            width="445"
-            height="445"
-          />
+          {destinations.map((dest, index) => {
+            return (
+              <Image
+                key={dest.name}
+                src={dest.images.png}
+                alt={dest.imageAlt}
+                width="445"
+                height="445"
+                id={imagesIds[index]}
+                className={
+                  index !== selectedDestinationIndex ? utilityClasses.dNone : ""
+                }
+              />
+            );
+          })}
         </div>
         <div>
           <TabList
@@ -57,23 +70,9 @@ export default function DestinationsTabs({
               styles.tablist
             )}
             label="Destinations"
-            onArrowDown={(key) => {
-              if (key === "ArrowRight") {
-                setSelectedDestinationIndex((i) =>
-                  i === destinations.length - 1 ? 0 : i + 1
-                );
-              } else if (key === "ArrowLeft") {
-                setSelectedDestinationIndex((i) =>
-                  i === 0 ? destinations.length - 1 : i - 1
-                );
-              }
-            }}
-            onHomeDown={() => {
-              setSelectedDestinationIndex(0);
-            }}
-            onEndDown={() => {
-              setSelectedDestinationIndex(destinations.length - 1);
-            }}
+            currentIndex={selectedDestinationIndex}
+            tabSetSize={destinations.length}
+            setIndex={setSelectedDestinationIndex}
           >
             {names.map((name, index) => {
               return (
@@ -81,7 +80,8 @@ export default function DestinationsTabs({
                   key={name}
                   active={index === selectedDestinationIndex}
                   pos={index + 1}
-                  controls={tabpanelsIds[index]}
+                  setsize={destinations.length}
+                  controls={tabpanelsIds[index] + " " + imagesIds[index]}
                   className={classes(
                     styles.tab,
                     utilityClasses.textWhite,

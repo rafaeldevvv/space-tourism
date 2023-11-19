@@ -5,6 +5,7 @@ import { useState } from "react";
 
 /* utils */
 import classes from "../utils/classes";
+import createIds from "../utils/createIds";
 
 /* styles */
 import utilityClasses from "../shared-css/utility-classes.module.css";
@@ -23,14 +24,11 @@ import NumberedTitle from "../components/NumberedTitle";
 export default function CrewTab({ crew }: { crew: Member[] }) {
   const [selectedMemberIndex, setSelectedMemberIndex] = useState(0);
 
-  const selectedMember = crew.find((_, i) => i === selectedMemberIndex)!;
-
   const roles = crew.map((m) => m.role);
 
-  const tabpanelsIds = new Array(crew.length).map(
-    (_, i) => `crew-tabpanel-${i}`
-  );
-  const tabsIds = new Array(crew.length).map((_, i) => `crew-tab-${i}`);
+  const tabsIds = createIds(crew.length, "crew-tab");
+  const tabpanelsIds = createIds(crew.length, "crew-tabpanel");
+  const imagesIds = createIds(crew.length, "crew-image");
 
   return (
     <div className={utilityClasses.gridAlignContentCenter}>
@@ -42,13 +40,22 @@ export default function CrewTab({ crew }: { crew: Member[] }) {
         )}
       >
         <div>
-          <Image
-            src={selectedMember.images.webp}
-            alt={selectedMember.imageAlt}
-            width="575"
-            height="700"
-            className={pageStyles.personImage}
-          />
+          {crew.map((member, index) => {
+            return (
+              <Image
+                key={member.name}
+                src={member.images.png}
+                alt={member.imageAlt}
+                width="445"
+                height="445"
+                id={imagesIds[index]}
+                className={classes(
+                  index !== selectedMemberIndex ? utilityClasses.dNone : "",
+                  pageStyles.personImage
+                )}
+              />
+            );
+          })}
           <hr className={pageStyles.separator} />
         </div>
 
@@ -62,34 +69,7 @@ export default function CrewTab({ crew }: { crew: Member[] }) {
                   labelledBy={tabsIds[index]}
                   active={selectedMemberIndex === index}
                 >
-                  <article
-                    className={classes(
-                      utilityClasses.flow,
-                      pageStyles.tabContent
-                    )}
-                  >
-                    <h2
-                      className={classes(
-                        utilityClasses.uppercase,
-                        utilityClasses.ffSerif,
-                        utilityClasses.fs700,
-                        utilityClasses.letterSpacing2
-                      )}
-                    >
-                      <span
-                        className={classes(
-                          utilityClasses.fs600,
-                          utilityClasses.dBlock,
-                          utilityClasses.letterSpacing3,
-                          pageStyles.role
-                        )}
-                      >
-                        {member.role}
-                      </span>
-                      {member.name}
-                    </h2>
-                    <p className={utilityClasses.textLight}>{member.bio}</p>
-                  </article>
+                  <MemberArticle member={member} />
                 </TabPanel>
               );
             })}
@@ -103,23 +83,9 @@ export default function CrewTab({ crew }: { crew: Member[] }) {
               utilityClasses.justifyContentStartLandscape
             )}
             label="Crew"
-            onArrowDown={(key) => {
-              if (key === "ArrowLeft") {
-                setSelectedMemberIndex((i) =>
-                  i === 0 ? crew.length - 1 : i - 1
-                );
-              } else if (key === "ArrowRight") {
-                setSelectedMemberIndex((i) =>
-                  i === crew.length - 1 ? 0 : i + 1
-                );
-              }
-            }}
-            onHomeDown={() => {
-              setSelectedMemberIndex(0);
-            }}
-            onEndDown={() => {
-              setSelectedMemberIndex(crew.length - 1);
-            }}
+            currentIndex={selectedMemberIndex}
+            setIndex={setSelectedMemberIndex}
+            tabSetSize={crew.length}
             style={{ "--gap": "1.5rem" } as React.CSSProperties}
           >
             {crew.map((member, index) => {
@@ -128,7 +94,8 @@ export default function CrewTab({ crew }: { crew: Member[] }) {
                   key={member.name}
                   active={selectedMemberIndex === index}
                   pos={index + 1}
-                  controls={tabpanelsIds[index]}
+                  setsize={crew.length}
+                  controls={tabpanelsIds[index] + " " + imagesIds[index]}
                   id={tabsIds[index]}
                   onClick={() => setSelectedMemberIndex(index)}
                   activeClassname={componentsStyles.active}
@@ -141,5 +108,33 @@ export default function CrewTab({ crew }: { crew: Member[] }) {
         </div>
       </div>
     </div>
+  );
+}
+
+export function MemberArticle({ member }: { member: Member }) {
+  return (
+    <article className={classes(utilityClasses.flow, pageStyles.tabContent)}>
+      <h2
+        className={classes(
+          utilityClasses.uppercase,
+          utilityClasses.ffSerif,
+          utilityClasses.fs700,
+          utilityClasses.letterSpacing2
+        )}
+      >
+        <span
+          className={classes(
+            utilityClasses.fs600,
+            utilityClasses.dBlock,
+            utilityClasses.letterSpacing3,
+            pageStyles.role
+          )}
+        >
+          {member.role}
+        </span>
+        {member.name}
+      </h2>
+      <p className={utilityClasses.textLight}>{member.bio}</p>
+    </article>
   );
 }

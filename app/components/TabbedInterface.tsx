@@ -5,16 +5,18 @@ export function Tab({
   children,
   active,
   pos,
+  setsize,
   controls,
   onClick,
   id,
   className = "",
-  activeClassname = "active"
+  activeClassname = "active",
 }: {
   children: React.ReactNode;
   active: boolean;
   controls: string;
   pos: number;
+  setsize: number;
   id: string;
   onClick: () => void;
   className?: string;
@@ -38,6 +40,7 @@ export function Tab({
       className={className}
       aria-selected={active}
       aria-posinset={pos}
+      aria-setsize={setsize}
       aria-controls={controls}
       tabIndex={active ? 0 : -1}
       onClick={onClick}
@@ -53,18 +56,18 @@ export function TabList({
   label,
   orientation = "horizontal",
   style = {},
-  onArrowDown,
-  onHomeDown = () => {},
-  onEndDown = () => {},
+  tabSetSize,
+  currentIndex,
+  setIndex,
 }: {
   className?: string;
   children: React.ReactNode;
   label: string;
   orientation?: "horizontal" | "vertical";
-  style?: React.CSSProperties
-  onArrowDown: (key: ArrowKeys) => void;
-  onHomeDown: () => void;
-  onEndDown: () => void;
+  style?: React.CSSProperties;
+  tabSetSize: number;
+  currentIndex: number;
+  setIndex: (index: number) => void;
 }) {
   return (
     <div
@@ -72,29 +75,31 @@ export function TabList({
       className={className}
       aria-label={label}
       onKeyDown={(e) => {
-        switch (e.key) {
-          case "ArrowDown":
-          case "ArrowUp": {
-            if (orientation === "vertical") {
-              e.preventDefault();
-            }
-          }
-          case "ArrowLeft":
-          case "ArrowRight": {
-            onArrowDown(e.key);
-            break;
-          }
-          case "Home": {
-            e.preventDefault();
-            onHomeDown();
-            break;
-          }
-          case "End": {
-            e.preventDefault();
-            onEndDown();
-            break;
-          }
+        const { key } = e;
+
+        if (
+          ((key === "ArrowUp" || key === "ArrowDown") &&
+            orientation === "vertical") ||
+          key === "Home" ||
+          key === "End"
+        ) {
+          e.preventDefault();
         }
+
+        if (
+          (key === "ArrowRight" && orientation === "horizontal") ||
+          (key === "ArrowDown" && orientation === "vertical")
+        ) {
+          setIndex(currentIndex === tabSetSize - 1 ? 0 : currentIndex + 1);
+        } else if (
+          (key === "ArrowLeft" && orientation === "horizontal") ||
+          (key === "ArrowUp" && orientation === "vertical")
+        ) {
+          setIndex(currentIndex === 0 ? tabSetSize - 1 : currentIndex - 1);
+        }
+
+        if (key === "Home") setIndex(0);
+        if (key === "End") setIndex(tabSetSize - 1);
       }}
       aria-orientation={orientation}
       style={style}

@@ -4,6 +4,11 @@ import homepageStyles from "./Homepage.module.css";
 import Link from "next/link";
 import classes from "./utils/classes";
 
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  
+}
+
 export default function Homepage() {
   return (
     <div className={classes(utilities.gridContainer, homepageStyles.gridContainer)}>

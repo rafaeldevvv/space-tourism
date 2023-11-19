@@ -11,7 +11,7 @@ import DestinationPageContent from "./DestinationPageContent";
 import getSpaceData from "../utils/getSpaceData";
 
 export const metadata: Metadata = {
-  title: "Destinations | Space Tourism",
+  title: "Destinations",
   description: "All the destinations we offer, including the Moon, Mars, Europa and Titan",
 };
 

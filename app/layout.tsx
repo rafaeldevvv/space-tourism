@@ -24,7 +24,7 @@ const bellefair = Bellefair({
 });
 
 export const metadata: Metadata = {
-  title: "Home | Space tourism",
+  title: { template: "%s | Space Tourism", default: "Space Tourism" },
   description: "Buckle up and prepare yourself to go to space!",
 };
 
@@ -44,7 +44,9 @@ export default function RootLayout({
     >
       <body>
         <PageWrapper>
-          <a href="#main-content" className="skipToContent">Skip to main content</a>
+          <a href="#main-content" className="skipToContent">
+            Skip to main content
+          </a>
           <Header />
           <main id="main-content">{children}</main>
           <Footer />

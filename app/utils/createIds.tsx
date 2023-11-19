@@ -1,3 +1,9 @@
-export default function createIds(length: number, prefix: string) {
-  return new Array(length).map((_, i) => `${prefix}-${i}`);
+export default function createIds(length: number, prefix = "id") {
+  const ids = [];
+
+  for (let i = 0; i < length; i++) {
+    ids.push(`${prefix}-${i}`);
+  }
+
+  return ids;
 }

@@ -11,7 +11,7 @@ import CrewPageContent from "./CrewPageContent";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Crew | Space Tourism",
+  title: "Crew",
   description: "Meet all the crew members of Space Tourism",
 }
 

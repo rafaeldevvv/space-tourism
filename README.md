@@ -26,6 +26,7 @@ Users should be able to:
 ### Screenshot
 
 ### Links
+
 [Live Site](https://space-tourism-zeta-sable.vercel.app/)
 
 ## Process
@@ -184,18 +185,22 @@ export function Tab({
   children,
   active,
   pos,
+  setsize,
   controls,
   onClick,
   id,
-  className = "tab",
+  className = "",
+  activeClassname = "active",
 }: {
   children: React.ReactNode;
   active: boolean;
   controls: string;
   pos: number;
+  setsize: number;
   id: string;
   onClick: () => void;
   className?: string;
+  activeClassname?: string;
 }) {
   const tabRef = useRef<null | HTMLButtonElement>(null);
 
@@ -205,7 +210,7 @@ export function Tab({
     }
   }, [active]);
 
-  if (active) className += " active";
+  if (active) className += " " + activeClassname;
 
   return (
     <button
@@ -215,6 +220,7 @@ export function Tab({
       className={className}
       aria-selected={active}
       aria-posinset={pos}
+      aria-setsize={setsize}
       aria-controls={controls}
       tabIndex={active ? 0 : -1}
       onClick={onClick}
@@ -225,23 +231,23 @@ export function Tab({
 }
 
 export function TabList({
-  className = "tablist",
+  className = "",
   children,
-  label = "Tabs",
+  label,
   orientation = "horizontal",
   style = {},
-  onArrowDown,
-  onHomeDown = () => {},
-  onEndDown = () => {},
+  tabSetSize,
+  currentIndex,
+  setIndex,
 }: {
   className?: string;
   children: React.ReactNode;
-  label?: string;
+  label: string;
   orientation?: "horizontal" | "vertical";
-  style?: React.CSSProperties
-  onArrowDown: (key: ArrowKeys) => void;
-  onHomeDown: () => void;
-  onEndDown: () => void;
+  style?: React.CSSProperties;
+  tabSetSize: number;
+  currentIndex: number;
+  setIndex: (index: number) => void;
 }) {
   return (
     <div
@@ -249,29 +255,31 @@ export function TabList({
       className={className}
       aria-label={label}
       onKeyDown={(e) => {
-        switch (e.key) {
-          case "ArrowDown":
-          case "ArrowUp": {
-            if (orientation === "vertical") {
-              e.preventDefault();
-            }
-          }
-          case "ArrowLeft":
-          case "ArrowRight": {
-            onArrowDown(e.key);
-            break;
-          }
-          case "Home": {
-            e.preventDefault();
-            onHomeDown();
-            break;
-          }
-          case "End": {
-            e.preventDefault();
-            onEndDown();
-            break;
-          }
+        const { key } = e;
+
+        if (
+          ((key === "ArrowUp" || key === "ArrowDown") &&
+            orientation === "vertical") ||
+          key === "Home" ||
+          key === "End"
+        ) {
+          e.preventDefault();
         }
+
+        if (
+          (key === "ArrowRight" && orientation === "horizontal") ||
+          (key === "ArrowDown" && orientation === "vertical")
+        ) {
+          setIndex(currentIndex === tabSetSize - 1 ? 0 : currentIndex + 1);
+        } else if (
+          (key === "ArrowLeft" && orientation === "horizontal") ||
+          (key === "ArrowUp" && orientation === "vertical")
+        ) {
+          setIndex(currentIndex === 0 ? tabSetSize - 1 : currentIndex - 1);
+        }
+
+        if (key === "Home") setIndex(0);
+        if (key === "End") setIndex(tabSetSize - 1);
       }}
       aria-orientation={orientation}
       style={style}
@@ -282,7 +290,7 @@ export function TabList({
 }
 
 export function TabPanel({
-  className = "tabpanel",
+  className = "",
   id,
   labelledBy,
   children,
@@ -318,42 +326,110 @@ I can use `matchMedia()` to test the document with a media query and watch chang
 
 ```js
 useEffect(() => {
-    /* 
+  /* 
       every time the change event is fired, 
       we create a new mql object, and because of that we
       have to remove the event handler on the previous mql and
       assign an updated remove function to this variable 
     */
 
-    let remove: null | (() => void) = null;
+  let remove: null | (() => void) = null;
 
-    const updateOrientation = () => {
-      if (remove !== null) remove();
+  const updateOrientation = () => {
+    if (remove !== null) remove();
 
-      /* create a MediaQueryList object */
-      const mql = window.matchMedia(
-        "(min-width: 50em) and (orientation: landscape)"
-      );
+    /* create a MediaQueryList object */
+    const mql = window.matchMedia(
+      "(min-width: 50em) and (orientation: landscape)"
+    );
 
-      /* register change event handler */
-      mql.addEventListener("change", updateOrientation);
+    /* register change event handler */
+    mql.addEventListener("change", updateOrientation);
 
-      /* update `remove()` function */
-      remove = () => {
-        mql.removeEventListener("change", updateOrientation);
-      };
-
-      /* check matching and set orientation */
-      if (mql.matches) setOrientation("vertical");
-      else setOrientation("horizontal");
+    /* update `remove()` function */
+    remove = () => {
+      mql.removeEventListener("change", updateOrientation);
     };
 
-    updateOrientation();
+    /* check matching and set orientation */
+    if (mql.matches) setOrientation("vertical");
+    else setOrientation("horizontal");
+  };
 
-    return () => {
-      if (remove !== null) remove();
-    };
-  });
+  updateOrientation();
+
+  return () => {
+    if (remove !== null) remove();
+  };
+});
+```
+
+I added alternative texts for the images to the data.json file:
+
+```json
+{
+  "destinations": [
+    {
+      /* ... */
+      "imageAlt": "A white cratered sattelite"
+      /* ... */
+    },
+    {
+      /* ... */
+      "imageAlt": "A reddish planet covered by reddish dust"
+      /* ... */
+    },
+    {
+      /* ... */
+      "imageAlt": "An icy celestial body with a smooth surface marked by fractures and ridges"
+      /* ... */
+    },
+    {
+      /* ... */
+      "imageAlt": "Hazy orange moon covered by a thick atmosphere"
+      /* ... */
+    }
+  ],
+  "crew": [
+    {
+      /* ... */
+      "imageAlt": "A middle-aged man wearing a NASA blue flight suit, lifting his hands up in a gesture of celebration, and smiling"
+      /* ... */
+    },
+    {
+      /* ... */
+      "imageAlt": "A young man holding a microphone close to his mouth carrying out a presentation"
+      /* ... */
+    },
+    {
+      /* ... */
+      "imageAlt": "A man with a shaved head, wearing a NASA blue flight suit and smiling"
+      /* ... */
+    },
+    {
+      /* ... */
+      "imageAlt": "A woman with curly blond hair, holding a microphone close to her mouth and performing a presentation"
+      /* ... */
+    }
+  ],
+  "technologies": [
+    {
+      /* ... */
+      "imageAlt": "a"
+      /* ... */
+    },
+    {
+      /* ... */
+      "imageAlt": "a"
+      /* ... */
+    },
+    {
+      /* ... */
+      "imageAlt": "a"
+      /* ... */
+    }
+  ]
+}
 ```
 
 ### Useful Resources
@@ -372,9 +448,11 @@ useEffect(() => {
 - [Window: `devicePixelRatio` property](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio) - The example using `matchMedia()` was useful.
 - [`<picture>`: The Picture element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)
 - [ChatGPT](https://chat.openai.com/chat)
+- [aria-controls](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-controls)
 
 ## Author
-- Instagram
-- Portfolio
-- Twitter
-- Linkedin
+
+- [Instagram](https://www.instagram.com/rafaeldevvv)
+- [Portfolio](https://rafaeldevvv.github.io/portfolio)
+- [Twitter](https://www.twitter.com/rafaeldevvv)
+- [Linkedin](https://www.linkedin.com/in/rafael-maia-b69662263)
