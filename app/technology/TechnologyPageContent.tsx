@@ -24,7 +24,7 @@ import NumberedTitle from "../components/NumberedTitle";
 export default function TechnologyPageContent({
   technologies,
 }: {
-  technologies: Technology[];
+  technologies: readonly Technology[];
 }) {
   const [selectedTechIndex, setSelectedTechIndex] = useState(0);
   const [orientation, setOrientation] = useState<"vertical" | "horizontal">(
@@ -176,7 +176,7 @@ export function TerminologySection({
   tabpanelsIds,
   selectedTechIndex,
 }: {
-  technologies: Technology[];
+  technologies: readonly Technology[];
   tabpanelsIds: string[];
   tabsIds: string[];
   selectedTechIndex: number;

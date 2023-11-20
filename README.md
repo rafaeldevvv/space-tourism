@@ -6,10 +6,11 @@ This is a solution to the [Space tourism website challenge on Frontend Mentor](h
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
+  - [Screenshots](#screenshots)
   - [Links](#links)
 - [Process](#process)
   - [Built with](#built-with)
+  - [What I Learnt](#what-i-learnt)
   - [Useful Resources](#useful-resources)
 - [Author](#author)
 
@@ -23,7 +24,7 @@ Users should be able to:
 - See hover states for all interactive elements on the page
 - View each page and be able to toggle between the tabs to see new information
 
-### Screenshot
+### Screenshots
 
 ### Links
 
@@ -40,6 +41,7 @@ Users should be able to:
 - Next.js
 - React.js
 - JSX
+- ARIA
 
 ### What I Learnt
 
@@ -370,63 +372,41 @@ I added alternative texts for the images to the data.json file:
 {
   "destinations": [
     {
-      /* ... */
-      "imageAlt": "A white cratered sattelite"
-      /* ... */
+      "imageAlt": "A white cratered sattelite",
     },
     {
-      /* ... */
-      "imageAlt": "A reddish planet covered by reddish dust"
-      /* ... */
+      "imageAlt": "A reddish planet covered by reddish dust",
     },
     {
-      /* ... */
-      "imageAlt": "An icy celestial body with a smooth surface marked by fractures and ridges"
-      /* ... */
+      "imageAlt": "An icy celestial body with a smooth surface marked by fractures and ridges",
     },
     {
-      /* ... */
-      "imageAlt": "Hazy orange moon covered by a thick atmosphere"
-      /* ... */
+      "imageAlt": "Hazy orange moon covered by a thick atmosphere",
     }
   ],
   "crew": [
     {
-      /* ... */
-      "imageAlt": "A middle-aged man wearing a NASA blue flight suit, lifting his hands up in a gesture of celebration, and smiling"
-      /* ... */
+      "imageAlt": "A middle-aged man wearing a NASA blue flight suit, lifting his hands up in a gesture of celebration, and smiling",
     },
     {
-      /* ... */
-      "imageAlt": "A young man holding a microphone close to his mouth carrying out a presentation"
-      /* ... */
+      "imageAlt": "A young man holding a microphone close to his mouth carrying out a presentation",
     },
     {
-      /* ... */
-      "imageAlt": "A man with a shaved head, wearing a NASA blue flight suit and smiling"
-      /* ... */
+      "imageAlt": "A man with a shaved head, wearing a NASA blue flight suit and smiling",
     },
     {
-      /* ... */
-      "imageAlt": "A woman with curly blond hair, holding a microphone close to her mouth and performing a presentation"
-      /* ... */
+      "imageAlt": "A woman with curly blond hair, holding a microphone close to her mouth and performing a presentation",
     }
   ],
   "technologies": [
     {
-      /* ... */
-      "imageAlt": "a"
-      /* ... */
+      "imageAlt": "A pointy white rocket blasting off into space",
     },
     {
-      /* ... */
-      "imageAlt": "a"
-      /* ... */
+      "imageAlt": "A rocket being crafted on a lauching site",
     },
     {
-      /* ... */
-      "imageAlt": "a"
-      /* ... */
+      "imageAlt": "A white space capsule that looks like a shorter and more fat rocket in space near the atmosphere of Earth",
     }
   ]
 }

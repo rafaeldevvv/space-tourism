@@ -1,0 +1,22 @@
+.spinnerWrapper {
+   place-content: center;
+   place-items: center;
+}
+
+.spinner {
+   width: 5rem;
+   aspect-ratio: 1;
+   border-radius: 50%;
+   border-style: solid;
+   border-color: hsl(var(--clr-white)) hsl(var(--clr-white)) hsl(var(--clr-white)) transparent;
+   border-width: .4rem;
+
+   animation: spin .5s linear infinite;
+}
+
+@keyframes spin {
+   to {
+      transform: rotate(360deg);
+   }
+}
+

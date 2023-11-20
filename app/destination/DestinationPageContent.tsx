@@ -24,7 +24,7 @@ import { useState } from "react";
 export default function DestinationsTabs({
   destinations,
 }: {
-  destinations: Destination[];
+  destinations: readonly Destination[];
 }) {
   const [selectedDestinationIndex, setSelectedDestinationIndex] = useState(0);
 

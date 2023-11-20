@@ -21,7 +21,7 @@ import Image from "next/image";
 import VisuallyHidden from "../components/VisuallyHidden";
 import NumberedTitle from "../components/NumberedTitle";
 
-export default function CrewTab({ crew }: { crew: Member[] }) {
+export default function CrewTab({ crew }: { crew: readonly Member[] }) {
   const [selectedMemberIndex, setSelectedMemberIndex] = useState(0);
 
   const roles = crew.map((m) => m.role);

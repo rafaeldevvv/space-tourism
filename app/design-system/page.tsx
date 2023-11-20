@@ -3,6 +3,8 @@ import utilityClasses from "../shared-css/utility-classes.module.css";
 import componentsStyles from "../shared-css/components.module.css";
 import classes from "../utils/classes";
 
+import GridContainerSkeleton from "../components/GridContainerSkeleton";
+
 type CSSProps = React.CSSProperties;
 
 export default function DesignSystemPage() {
@@ -395,6 +397,12 @@ export default function DesignSystemPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section>
+        <h2 className={utilityClasses.numberedTitle}><span>04</span> Loading States</h2>
+
+        <GridContainerSkeleton />
       </section>
     </div>
   );

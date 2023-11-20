@@ -160,19 +160,7 @@
     position: relative;
   }
 
-  .primaryNavigation::after {
-    content: "";
-    position: absolute;
-    left: 100%;
-    /* 
-      the width of the device minus the width of the container devided by two
-      this is to get the width of the sides out of the container
-    */
-    width: calc((100vw - 80rem) / 2); 
-    height: 100%;
-    backdrop-filter: blur(2.5rem);
-    background-color: hsl(var(--clr-light) / 0.15);
-  }
+  
 
   .logoWrapper,
   .primaryHeader nav {

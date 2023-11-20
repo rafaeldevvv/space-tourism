@@ -1,0 +1,24 @@
+.gridContainer {
+   place-items: stretch;
+}
+
+.skeleton {
+   --stripe-width: 30px;
+
+   height: 35rem;
+   max-height: 100%;
+   width: 100%;
+   border-radius: 1rem;
+   background-image: linear-gradient(to bottom right, hsl(230 35% 5%) 40%, hsl(230 35% 9%), hsl(230 35% 5%) 60%);
+   background-size: 400% 400%;
+   animation: gradient-flow 2s infinite;
+}
+
+@keyframes gradient-flow {
+   from {
+      background-position: 100% 100%;
+   }
+   to {
+      background-position: 0% 0%;
+   }
+}
