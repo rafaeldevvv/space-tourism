@@ -2,7 +2,7 @@
 
 /* styles */
 import "../globals.css";
-import styles from "./destination.module.css";
+import styles from "./Destination.module.css";
 import utilityClasses from "../shared-css/utility-classes.module.css";
 import componentsStyles from "../shared-css/components.module.css";
 
