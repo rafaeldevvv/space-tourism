@@ -32,7 +32,7 @@ export default function CrewTab({ crew }: { crew: readonly Member[] }) {
 
   return (
     <div className={utilityClasses.gridAlignContentCenter}>
-      <NumberedTitle title="Meet your crew" number={2} center={false} />
+      <NumberedTitle title="Meet your crew" number={2} />
       <div
         className={classes(
           utilityClasses.gridContainer,
