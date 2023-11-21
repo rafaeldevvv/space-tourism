@@ -25,6 +25,10 @@ Users should be able to:
 - View each page and be able to toggle between the tabs to see new information
 
 ### Screenshots
+![](./screenshots/homepage.png)
+![](./screenshots/destination.png)
+![](./screenshots/crew.png)
+![](./screenshots/technology.png)
 
 ### Links
 
@@ -429,6 +433,7 @@ I added alternative texts for the images to the data.json file:
 - [`<picture>`: The Picture element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)
 - [ChatGPT](https://chat.openai.com/chat)
 - [aria-controls](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-controls)
+- [How do I commit case-sensitive only filename changes in Git?](https://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git)
 
 ## Author
 
