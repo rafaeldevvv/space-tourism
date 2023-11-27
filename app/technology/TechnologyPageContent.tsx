@@ -13,7 +13,7 @@ import pageStyles from "./Technology.module.css";
 
 /* util functions */
 import createIds from "../utils/createIds";
-import classes from "../utils/classes";
+import classnames from "../utils/classnames";
 
 /* components */
 import Image from "next/image";
@@ -42,7 +42,6 @@ export default function TechnologyPageContent({
       have to remove the event handler on the previous mql and
       assign an updated remove function to this variable 
     */
-
     let remove: null | (() => void) = null;
 
     const updateOrientation = () => {
@@ -77,17 +76,20 @@ export default function TechnologyPageContent({
     <div className={utilityClasses.gridAlignContentCenter}>
       <NumberedTitle title="space launch 101" number={3} />
       <div
-        className={classes(
+        className={classnames(
           pageStyles.gridContainer,
           utilityClasses.gridContainer
         )}
       >
         <div
-          className={classes(utilityClasses.flex, pageStyles.tablistAndSection)}
+          className={classnames(
+            utilityClasses.flex,
+            pageStyles.tablistAndSection
+          )}
         >
           <TabList
             label="Technologies"
-            className={classes(
+            className={classnames(
               componentsStyles.numberIndicators,
               utilityClasses.flex,
               utilityClasses.justifyContentCenterPortrait,
@@ -108,7 +110,7 @@ export default function TechnologyPageContent({
                   active={selectedTechIndex === index}
                   onClick={() => setSelectedTechIndex(index)}
                   id={tabsIds[index]}
-                  className={classes(
+                  className={classnames(
                     utilityClasses.fs600,
                     utilityClasses.ffSerif
                   )}
@@ -183,10 +185,10 @@ export function TerminologySection({
 }) {
   return (
     <section
-      className={classes(pageStyles.terminologySection, utilityClasses.flow)}
+      className={classnames(pageStyles.terminologySection, utilityClasses.flow)}
     >
       <h2
-        className={classes(
+        className={classnames(
           utilityClasses.textLight,
           utilityClasses.uppercase,
           utilityClasses.fs200,
@@ -215,10 +217,10 @@ export function TerminologySection({
 export function TechnologyArticle({ technology }: { technology: Technology }) {
   return (
     <article
-      className={classes(pageStyles.tabpanelContent, utilityClasses.flow)}
+      className={classnames(pageStyles.tabpanelContent, utilityClasses.flow)}
     >
       <h3
-        className={classes(
+        className={classnames(
           utilityClasses.fs700,
           utilityClasses.ffSerif,
           utilityClasses.uppercase

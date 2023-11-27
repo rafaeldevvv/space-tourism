@@ -1,0 +1,120 @@
+.grid-container {
+  display: grid;
+  place-items: center;
+  padding-inline: 2rem;
+  padding-block: 1rem 4rem;
+}
+
+/* ch is roughly the width of the zero(0) character */
+
+.grid-container p {
+  max-width: 50ch;
+  margin-inline: auto;
+}
+
+.grid-container--home {
+  row-gap: 4rem;
+}
+
+/* destination */
+.grid-container--destination {
+  --flow-space: 2rem;
+  padding-block: 0rem;
+  row-gap: 0;
+  align-content: center;
+  /* the grid-area properties are assigned in the Destination.module.css file in the destination directory */
+  grid-template-areas:
+    "title"
+    "image"
+    "tabs"
+    "content";
+}
+
+.grid-container--crew {
+  --flow-space: 3rem;
+  align-content: center;
+  grid-template-areas:
+    "title"
+    "image"
+    "tabs"
+    "content";
+}
+
+@media (min-width: 35em) {
+  .grid-container {
+    padding-block: 7rem;
+  }
+
+  .grid-container--destination,
+  .grid-container--crew,
+  .grid-container--technology {
+    padding-block: 2rem;
+  }
+  
+  .grid-container--crew {
+    grid-template-areas:
+      "title"
+      "content"
+      "tabs"
+      "image";
+  }
+}
+
+@media (min-width: 50em) {
+  .grid-container {
+    padding-inline: 0;
+  }
+
+  .grid-container--destination {
+    --flow-space: 3rem;
+  }
+}
+
+@media (min-width: 50em) and (orientation: landscape) {
+  .grid-container {
+    padding-block: 4rem;
+    row-gap: 0;
+    column-gap: var(--container-gap, 2rem);
+    grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(
+        2rem,
+        1fr
+      );
+  }
+
+  .grid-container p {
+    margin-inline: 0;
+  }
+
+  .grid-container--home {
+    /* pushing it down to the bottom */
+    --container-gap: 1rem;
+    padding-block: 15rem max(7rem, 30vh);
+    place-items: end center;
+    margin: 0;
+  }
+
+  .grid-container--home > *:first-child {
+    grid-column: 2;
+  }
+
+  .grid-container--home > *:last-child {
+    grid-column: 3;
+  }
+
+  .grid-container--destination {
+    padding-block: 4rem;
+    grid-template-areas:
+      ". title title   ."
+      ". image tabs    ."
+      ". image content .";
+    justify-items: start;
+    align-items: center;
+  }
+
+  .grid-container--crew {
+    grid-template-areas:
+      ". title image ."
+      ". content image ."
+      ". tabs image .";
+  }
+}

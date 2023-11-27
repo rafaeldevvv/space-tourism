@@ -1,7 +1,7 @@
 import React from "react";
 import utilityClasses from "../shared-css/utility-classes.module.css";
 import componentsStyles from "../shared-css/components.module.css";
-import classes from "../utils/classes";
+import classes from "../utils/classnames";
 
 import GridContainerSkeleton from "../components/GridContainerSkeleton";
 
@@ -277,7 +277,10 @@ export default function DesignSystemPage() {
           </nav>
         </div>
 
-        <div className={utilityClasses.flex} style={{ "--gap": "3rem" } as CSSProps}>
+        <div
+          className={utilityClasses.flex}
+          style={{ "--gap": "3rem" } as CSSProps}
+        >
           <div style={{ marginTop: "5rem" }}>
             {/* <!-- explore button --> */}
             <a
@@ -345,7 +348,10 @@ export default function DesignSystemPage() {
 
             {/* <!-- Dots --> */}
             <div
-              className={classes(utilityClasses.flex, componentsStyles.dotIndicators)}
+              className={classes(
+                utilityClasses.flex,
+                componentsStyles.dotIndicators
+              )}
               style={{ "--gap": "1rem" } as CSSProps}
             >
               <button aria-selected="true">
@@ -360,7 +366,12 @@ export default function DesignSystemPage() {
             </div>
 
             {/* <!-- Numbers --> */}
-            <div className={classes(componentsStyles.numberIndicators, utilityClasses.flow)}>
+            <div
+              className={classes(
+                componentsStyles.numberIndicators,
+                utilityClasses.flow
+              )}
+            >
               <button
                 aria-selected="true"
                 className={classes(
@@ -400,7 +411,9 @@ export default function DesignSystemPage() {
       </section>
 
       <section>
-        <h2 className={utilityClasses.numberedTitle}><span>04</span> Loading States</h2>
+        <h2 className={utilityClasses.numberedTitle}>
+          <span>04</span> Loading States
+        </h2>
 
         <GridContainerSkeleton />
       </section>
@@ -429,18 +442,28 @@ function ColorBox({
           padding: "3rem 1rem 1rem",
           border: "1px solid white",
         }}
-        className={className + " " + classes(utilityClasses.ffSerif, utilityClasses.fs500)}
+        className={
+          className +
+          " " +
+          classes(utilityClasses.ffSerif, utilityClasses.fs500)
+        }
       >
         {hex}
       </div>
       <p>
-        <span className={utilityClasses.textLight} style={{ marginInlineEnd: "3rem" }}>
+        <span
+          className={utilityClasses.textLight}
+          style={{ marginInlineEnd: "3rem" }}
+        >
           RGB
         </span>{" "}
         <span className={utilityClasses.textWhite}>{rgb}</span>
       </p>
       <p>
-        <span className={utilityClasses.textLight} style={{ marginInlineEnd: "3rem" }}>
+        <span
+          className={utilityClasses.textLight}
+          style={{ marginInlineEnd: "3rem" }}
+        >
           HSL
         </span>{" "}
         <span className={utilityClasses.textWhite}>{hsl}</span>

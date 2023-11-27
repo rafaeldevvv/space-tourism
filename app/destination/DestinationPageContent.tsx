@@ -2,12 +2,13 @@
 
 /* styles */
 import "../globals.css";
-import styles from "./Destination.module.css";
+import pageStyles from "./Destination.module.css";
 import utilityClasses from "../shared-css/utility-classes.module.css";
 import componentsStyles from "../shared-css/components.module.css";
+import layoutStyles from "../shared-css/layout.module.css";
 
 /* utils */
-import classes from "../utils/classes";
+import classnames from "../utils/classnames";
 import createIds from "../utils/createIds";
 
 /* typescript */
@@ -16,7 +17,6 @@ import { Destination } from "../typescript/interfaces";
 /* components */
 import Image from "next/image";
 import { Tab, TabList, TabPanel } from "../components/TabbedInterface";
-import NumberedTitle from "../components/NumberedTitle";
 
 /* react */
 import { useState } from "react";
@@ -40,88 +40,101 @@ export default function DestinationsTabs({
   )!;
 
   return (
-    <div className={utilityClasses.gridAlignContentCenter}>
-      <NumberedTitle number={1} title="Pick your destination" />
-      <div className={classes(utilityClasses.gridContainer)}>
-        <div>
-          {destinations.map((dest, index) => {
-            return (
-              <Image
-                key={dest.name}
-                src={dest.images.png}
-                alt={dest.imageAlt}
-                width="445"
-                height="445"
-                id={imagesIds[index]}
-                className={
-                  index !== selectedDestinationIndex ? utilityClasses.dNone : ""
-                }
-              />
-            );
-          })}
-        </div>
-        <div>
-          <TabList
-            className={classes(
-              componentsStyles.underlineIndicators,
-              utilityClasses.flex,
-              utilityClasses.justifyContentCenterPortrait,
-              utilityClasses.justifyContentStartLandscape,
-              styles.tablist
+    <div
+      className={classnames(
+        layoutStyles["grid-container"],
+        layoutStyles["grid-container--destination"],
+        pageStyles.gridContainer,
+        utilityClasses.flow
+      )}
+    >
+      <h1 className={utilityClasses.numberedTitle}>
+        <span aria-hidden={true}>01</span> Pick your destination
+      </h1>
+
+      <TabList
+        className={classnames(
+          componentsStyles.underlineIndicators,
+          utilityClasses.flex,
+          utilityClasses.justifyContentCenterPortrait,
+          utilityClasses.justifyContentStartLandscape,
+          pageStyles.tablist
+        )}
+        label="Destinations"
+        currentIndex={selectedDestinationIndex}
+        tabSetSize={destinations.length}
+        setIndex={setSelectedDestinationIndex}
+      >
+        {names.map((name, index) => {
+          return (
+            <Tab
+              key={name}
+              active={index === selectedDestinationIndex}
+              pos={index + 1}
+              setsize={destinations.length}
+              controls={tabpanelsIds[index] + " " + imagesIds[index]}
+              className={classnames(
+                pageStyles.tab,
+                utilityClasses.textLight,
+                utilityClasses.fs300,
+                utilityClasses.ffSansCond,
+                utilityClasses.letterSpacing2,
+                utilityClasses.uppercase
+              )}
+              id={tabsIds[index]}
+              onClick={() => setSelectedDestinationIndex(index)}
+              activeClassname={componentsStyles.active}
+            >
+              {name}
+            </Tab>
+          );
+        })}
+      </TabList>
+
+      {destinations.map((d, i) => {
+        return (
+          <TabPanel
+            key={d.name}
+            id={tabpanelsIds[i]}
+            labelledBy={tabsIds[i]}
+            className={classnames(
+              pageStyles.utilities,
+              pageStyles.destinationInfo
             )}
-            label="Destinations"
-            currentIndex={selectedDestinationIndex}
-            tabSetSize={destinations.length}
-            setIndex={setSelectedDestinationIndex}
+            active={selectedDestination.name === d.name}
           >
-            {names.map((name, index) => {
-              return (
-                <Tab
-                  key={name}
-                  active={index === selectedDestinationIndex}
-                  pos={index + 1}
-                  setsize={destinations.length}
-                  controls={tabpanelsIds[index] + " " + imagesIds[index]}
-                  className={classes(
-                    styles.tab,
-                    utilityClasses.textWhite,
-                    utilityClasses.fs300
-                  )}
-                  id={tabsIds[index]}
-                  onClick={() => setSelectedDestinationIndex(index)}
-                  activeClassname={componentsStyles.active}
-                >
-                  {name}
-                </Tab>
-              );
-            })}
-          </TabList>
-          <div>
-            {destinations.map((d, i) => {
-              return (
-                <TabPanel
-                  key={d.name}
-                  id={tabpanelsIds[i]}
-                  labelledBy={tabsIds[i]}
-                  className={styles.utilities}
-                  active={selectedDestination.name === d.name}
-                >
-                  <DestinationInfo destination={d} />
-                </TabPanel>
-              );
-            })}
-          </div>
-        </div>
-      </div>
+            <DestinationInfo destination={d} />
+          </TabPanel>
+        );
+      })}
+
+      {destinations.map((dest, index) => {
+        return (
+          <picture>
+            <source srcSet={dest.images.webp} type="image/webp" />
+            <Image
+              key={dest.name}
+              src={dest.images.png}
+              alt={dest.imageAlt}
+              width="445"
+              height="445"
+              id={imagesIds[index]}
+              className={
+                index !== selectedDestinationIndex ? utilityClasses.dNone : ""
+              }
+            />
+          </picture>
+        );
+      })}
     </div>
   );
 }
 
-export function InfoBlock({ title = "Title", info = "Info" }) {
+export function MetaBlock({ title, info }: { title: string; info: string }) {
   return (
     <section>
       <h3
-        className={classes(
+        className={classnames(
           utilityClasses.uppercase,
           utilityClasses.textLight,
           utilityClasses.fs200,
@@ -132,10 +145,9 @@ export function InfoBlock({ title = "Title", info = "Info" }) {
         {title}
       </h3>
       <p
-        className={classes(
+        className={classnames(
           utilityClasses.uppercase,
-          utilityClasses.ffSerif,
-          styles.fs550
+          utilityClasses.ffSerif
         )}
       >
         {info}
@@ -146,9 +158,9 @@ export function InfoBlock({ title = "Title", info = "Info" }) {
 
 export function DestinationInfo({ destination }: { destination: Destination }) {
   return (
-    <article>
+    <article className={classnames(utilityClasses.flow)}>
       <h2
-        className={classes(
+        className={classnames(
           utilityClasses.fs800,
           utilityClasses.ffSerif,
           utilityClasses.uppercase
@@ -156,15 +168,15 @@ export function DestinationInfo({ destination }: { destination: Destination }) {
       >
         {destination.name}
       </h2>
-      <p className={classes(utilityClasses.textLight)}>
+      <p className={classnames(utilityClasses.textLight)}>
         {destination.description}
       </p>
 
-      <hr className={styles.separator} />
-
-      <div className={classes(utilityClasses.flex, styles.infoBlocks)}>
-        <InfoBlock title="Avg. Distance" info={destination.distance} />
-        <InfoBlock title="Est. travel time" info={destination.travel} />
+      <div
+        className={classnames(utilityClasses.flex, pageStyles.destinationMeta)}
+      >
+        <MetaBlock title="Avg. Distance" info={destination.distance} />
+        <MetaBlock title="Est. travel time" info={destination.travel} />
       </div>
     </article>
   );

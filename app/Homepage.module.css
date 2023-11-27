@@ -1,37 +1,29 @@
-.textWrapper h1 span {
+.content h1 span {
   margin-block: .2em;
 }
 
-.textWrapper p {
+.content p {
   line-height: 1.66;
 }
 
 @media (min-width: 35em) {
-  .textWrapper p {
+  .content p {
     line-height: 1.75;
   }
 }
 
 @media (min-width: 45em) {
-  .textWrapper h1 {
+  .content h1 {
     text-wrap: nowrap;
   }
 }
 
 @media (min-width: 50em) and (orientation: landscape) {
-  .gridContainer {
-    /* pushing it down to the bottom */
-    --container-gap: 1rem;
-    padding-block: 15rem max(7rem, 30vh) !important;
-    place-items: end center !important;
-    margin: 0 !important;
-  }
-
-  .textWrapper p {
+  .content p {
     margin: 0;
   }
 
-  .textWrapper + * {
+  .content + * {
     margin-inline: 0;
     /* for the button to get close to the edge */
     justify-self: end; 

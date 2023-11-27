@@ -6,7 +6,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import classes from "../utils/classes";
+import classes from "../utils/classnames";
 import utilities from "../shared-css/utility-classes.module.css";
 import styles from "./header.module.css";
 import components from "../shared-css/components.module.css";
@@ -132,7 +132,7 @@ export function PrimaryNavigation({
         styles.primaryNavigation,
         styles.underlineIndicators,
         isExpanded ? styles.active : "",
-        utilities.flex,
+        utilities.flex
       )}
       id={id}
     >

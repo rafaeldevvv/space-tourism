@@ -1,67 +1,45 @@
-@media (max-width: 35em) {
-  .personImage {
-    max-height: 320px;
-  }
+.imageWrapper {
+  grid-area: image;
+}
+
+.separator {
+  border-top: 1px solid hsl(var(--clr-white) / .4);
+}
+
+.tabs {
+  grid-area: tabs;
+}
+
+.content {
+  grid-area: content;
+}
+
+.content > * {
+  --flow-space: 1rem;
 }
 
 .role {
   color: hsl(var(--clr-white) / 0.5);
 }
 
-/* reverse the order of tablist and tab panel */
-.tabsAndPanels {
-   /* this gap affects the tablist if the inline style on the tablist is not defined */
-  --gap: 2rem;
-  flex-direction: column-reverse;
+@media (max-width: 35em) {
+  .image {
+    max-height: 320px;
+  }
 }
 
 @media (min-width: 35em) {
-   /* reverse the order of gridContainer children */
-  .gridContainer > div:first-child {
-    order: 1;
-  }
-
-  .gridContainer > div:last-child {
-    order: 0;
-  }
-
-  .separator {
+  .imageWrapper::after {
     display: none;
-  }
-
-  /* normalize the order of tablist and tabpanel */
-  .tabsAndPanels {
-    --gap: 3rem;
-    flex-direction: column;
   }
 }
 
 @media (min-width: 50em) and (orientation: landscape) {
-   /* replace the grid items and justify last grid item start */
-  .gridContainer > div:first-child,
-  .gridContainer > div:last-child {
-    order: 0;
-    grid-row: 1;
+  .imageWrapper {
+    align-self: end;
   }
 
-  .gridContainer > div:first-child {
-    grid-column: 3;
-  }
-
-  .gridContainer > div:last-child {
+  .tabs, .content {
     justify-self: start;
-    grid-column: 2;
-  }
-
-  .personImage {
-    max-height: 600px;
-  }
-
-  .tabsAndPanels {
-    --gap: 8rem;
-  }
-
-  .tabContent {
-    --flow-space: 2rem;
   }
 }

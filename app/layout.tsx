@@ -1,7 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Barlow_Condensed, Bellefair, Barlow } from "next/font/google";
-import classes from "./utils/classes";
+import classes from "./utils/classnames";
 
 import Header from "./layout-components/Header";
 import Footer from "./layout-components/Footer";

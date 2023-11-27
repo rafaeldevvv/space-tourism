@@ -1,5 +1,5 @@
 .primaryFooter {
-  margin-block-end: 1rem;
+  margin-block: 3rem 1rem;
   text-align: center;
   background-color: hsl(var(--clr-dark) / 0.4);
   max-width: max-content;

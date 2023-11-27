@@ -1,6 +1,6 @@
 import VisuallyHidden from "./components/VisuallyHidden";
 import utilityClasses from "./shared-css/utility-classes.module.css";
-import classes from "./utils/classes";
+import classes from "./utils/classnames";
 import styles from "./Loading.module.css";
 
 export default function Loading() {

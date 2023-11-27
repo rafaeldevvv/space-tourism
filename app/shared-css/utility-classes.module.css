@@ -42,6 +42,10 @@
   margin-top: var(--flow-space, 1rem);
 }
 
+.flow--space-small {
+  --flow-space: .75rem;
+}
+
 .container {
   max-width: 86rem;
   margin-inline: auto;
@@ -227,6 +231,7 @@
   text-transform: uppercase;
   letter-spacing: 4.72px;
   font-family: var(--ff-sans-cond);
+  grid-area: title;
 }
 
 .numberedTitle span {
@@ -235,21 +240,16 @@
   margin-inline-end: 0.5em;
 }
 
-/* spacing */
-.mb100 {
-  margin-bottom: 0.3em;
+@media (min-width: 35em) {
+  .numberedTitle {
+    justify-self: start;
+  }
 }
-.mb200 {
-  margin-bottom: 0.6em;
-}
-.mb300 {
-  margin-bottom: 0.9em;
-}
-.mb400 {
-  margin-bottom: 1.2em;
-}
-.mb500 {
-  margin-bottom: 1.5em;
+
+@media (min-width: 50em) and (orientation: portrait) {
+  .numberedTitle {
+    padding-inline: 2rem;
+  }
 }
 
 /* loading skeleton */

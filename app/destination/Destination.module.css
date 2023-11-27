@@ -1,29 +1,30 @@
-.fs550 {
-  font-size: 1.75rem;
+.gridContainer > picture {
+  grid-area: image;
+  max-width: 60%;
 }
 
 .tablist {
-  --underline-gap: 0.5rem;
-  margin-bottom: 1rem;
+  grid-area: tabs;
 }
 
-.separator {
-  margin-block: 2rem;
-  border-color: hsl(var(--clr-light));
+.destinationInfo {
+  grid-area: content;
 }
 
-@media (min-width: 50em) {
-  .separator {
-    margin-block: 4rem 2rem;
-  }
-}
-
-.infoBlocks {
+.destinationMeta {
   flex-direction: column;
+  border-top: 1px solid hsl(var(--clr-white) / .5);
+  padding-top: 2rem;
+  margin-top: 2rem;
+  text-wrap: nowrap;
+}
+
+.destinationMeta p {
+  font-size: 1.75rem;
 }
 
 @media (min-width: 35em) {
-  .infoBlocks {
+  .destinationMeta {
     --gap: 2rem;
     flex-direction: row;
     justify-content: space-evenly;
@@ -31,7 +32,12 @@
 }
 
 @media (min-width: 50em) and (orientation: landscape) {
-  .infoBlocks {
+  .gridContainer > picture {
+    max-width: 100%;
+    justify-self: center;
+  }
+
+  .destinationMeta {
     --gap: 5rem;
     justify-content: start;
   }

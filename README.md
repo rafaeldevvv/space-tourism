@@ -370,6 +370,34 @@ useEffect(() => {
 });
 ```
 
+Paragraphs below a heading inside a header become subtitles. In this case, we cannot use another heading level as subtitle, we've gotta use a paragraph. We've gotta wrap the heading and paragraph within a header to make the paragraph be distinguished as a subtitle. The `<header>` becomes the heading of the article, and it contains a main title and a subtitle.
+
+```tsx
+<header>
+  <h2
+    className={classnames(
+      utilityClasses.fs600,
+      utilityClasses.letterSpacing3,
+      utilityClasses.uppercase,
+      utilityClasses.ffSerif,
+      pageStyles.role
+    )}
+  >
+    {member.role}
+  </h2>
+  <p
+    className={classnames(
+      utilityClasses.uppercase,
+      utilityClasses.ffSerif,
+      utilityClasses.fs700,
+      utilityClasses.letterSpacing2
+    )}
+  >
+    {member.name}
+  </p>
+</header>
+```
+
 I added alternative texts for the images to the data.json file:
 
 ```json
@@ -414,6 +442,25 @@ I added alternative texts for the images to the data.json file:
     }
   ]
 }
+```
+
+The `picture` element is useful, among other things, to use unsupported image types while providing a fallback. It has one or many `source` elements, each of which decribes a possible source for the image and describes its own type. The type is defined so that the browser knows what type the source is and whether it is able to use it or not. The `img` element is used as a default and its `src` attribute is replaced with the `srcset` attribute value of a supported `source`. The reason why it is `srcset` is that you can provide different images for different resolutions within that attribute, e.g. it could be `"/path/image2.webp 1x, /path/image1 1.5x"`, `1x` and `1.5x` specify the resolution. It is `srcset` because you can provide a set of different sources within that attribute.
+
+```tsx
+<picture>
+  <source srcSet={dest.images.webp} type="image/webp" />
+  <Image
+    key={dest.name}
+    src={dest.images.png}
+    alt={dest.imageAlt}
+    width="445"
+    height="445"
+    id={imagesIds[index]}
+    className={
+      index !== selectedDestinationIndex ? utilityClasses.dNone : ""
+    }
+  />
+</picture>
 ```
 
 ### Useful Resources

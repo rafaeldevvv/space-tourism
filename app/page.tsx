@@ -1,15 +1,22 @@
 import components from "./shared-css/components.module.css";
 import utilities from "./shared-css/utility-classes.module.css";
 import homepageStyles from "./Homepage.module.css";
+import layoutStyles from "./shared-css/layout.module.css";
+
 import Link from "next/link";
-import classes from "./utils/classes";
+import classnames from "./utils/classnames";
 
 export default function Homepage() {
   return (
-    <div className={classes(utilities.gridContainer, homepageStyles.gridContainer)}>
-      <div className={homepageStyles.textWrapper}>
+    <div
+      className={classnames(
+        layoutStyles["grid-container"],
+        layoutStyles["grid-container--home"]
+      )}
+    >
+      <div className={homepageStyles.content}>
         <h1
-          className={classes(
+          className={classnames(
             homepageStyles.mainHeading,
             utilities.uppercase,
             utilities.ffSansCond,
@@ -20,17 +27,18 @@ export default function Homepage() {
         >
           So you want to travel to{" "}
           <span
-            className={classes(
+            className={classnames(
               utilities.ffSerif,
               utilities.letterSpacing2,
               utilities.fs900,
-              utilities.dBlock
+              utilities.dBlock,
+              utilities.textWhite,
             )}
           >
             Space
           </span>
         </h1>
-        <p className={classes(utilities.textLight, utilities.fs400)}>
+        <p className={classnames(utilities.textLight, utilities.fs400)}>
           Let’s face it; if you want to go to space, you might as well genuinely
           go to outer space and not hover kind of on the edge of it. Well sit
           back, and relax because we’ll give you a truly out of this world
@@ -40,7 +48,7 @@ export default function Homepage() {
       <div>
         <Link
           href="/destination"
-          className={classes(
+          className={classnames(
             components.largeButton,
             homepageStyles.largeButton,
             utilities.uppercase,

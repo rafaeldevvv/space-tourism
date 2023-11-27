@@ -1,5 +1,4 @@
 import { useRef, useEffect } from "react";
-import { ArrowKeys } from "../typescript/types";
 
 export function Tab({
   children,
@@ -77,6 +76,7 @@ export function TabList({
       onKeyDown={(e) => {
         const { key } = e;
 
+        /* we need to prevent default in some situations */
         if (
           ((key === "ArrowUp" || key === "ArrowDown") &&
             orientation === "vertical") ||
