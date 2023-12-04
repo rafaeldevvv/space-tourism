@@ -463,6 +463,16 @@ The `picture` element is useful, among other things, to use unsupported image ty
 </picture>
 ```
 
+Even though the image is placed in a grid area, you can use `grid-area: span 2` to make it span over 2 columns. `grid-area: span 2` means that the image is allowed to break into the right side, into the final column.
+
+```css
+@media (min-width: 50em) and (orientation: landscape) {
+  .imageWrapper {
+    grid-column: span 2;
+  }
+}
+```
+
 ### Useful Resources
 
 - [Space Travel course with Kevin Powell](https://scrimba.com/learn/spacetravel)

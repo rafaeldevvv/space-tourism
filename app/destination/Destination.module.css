@@ -1,6 +1,7 @@
 .gridContainer > picture {
   grid-area: image;
   max-width: 60%;
+  align-self: start;
 }
 
 .tablist {

@@ -1,5 +1,10 @@
 .imageWrapper {
   grid-area: image;
+  max-width: 100%;
+}
+
+.image {
+  max-width: 100%;
 }
 
 .separator {
@@ -9,7 +14,6 @@
 .tabs {
   grid-area: tabs;
 }
-
 .content {
   grid-area: content;
 }
@@ -28,15 +32,10 @@
   }
 }
 
-@media (min-width: 35em) {
-  .imageWrapper::after {
-    display: none;
-  }
-}
-
 @media (min-width: 50em) and (orientation: landscape) {
   .imageWrapper {
-    align-self: end;
+    grid-column: span 2;
+    max-width: 90%;
   }
 
   .tabs, .content {

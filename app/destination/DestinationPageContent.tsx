@@ -72,7 +72,8 @@ export default function DestinationsTabs({
               active={index === selectedDestinationIndex}
               pos={index + 1}
               setsize={destinations.length}
-              controls={tabpanelsIds[index] + " " + imagesIds[index]}
+              // stack overflow question ########################################################################################################################
+              controls={tabpanelsIds[index] + " " + imagesIds[index]} 
               className={classnames(
                 pageStyles.tab,
                 utilityClasses.textLight,
@@ -110,7 +111,7 @@ export default function DestinationsTabs({
 
       {destinations.map((dest, index) => {
         return (
-          <picture>
+          <picture key={dest.name}>
             <source srcSet={dest.images.webp} type="image/webp" />
             <Image
               key={dest.name}
@@ -132,7 +133,7 @@ export default function DestinationsTabs({
 
 export function MetaBlock({ title, info }: { title: string; info: string }) {
   return (
-    <section>
+    <div>
       <h3
         className={classnames(
           utilityClasses.uppercase,
@@ -152,7 +153,7 @@ export function MetaBlock({ title, info }: { title: string; info: string }) {
       >
         {info}
       </p>
-    </section>
+    </div>
   );
 }
 

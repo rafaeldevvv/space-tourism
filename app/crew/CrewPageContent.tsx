@@ -48,7 +48,7 @@ export default function CrewTab({ crew }: { crew: readonly Member[] }) {
           utilityClasses.flex,
           pageStyles.tabs
         )}
-        label="Crew"
+        label="Crew members"
         currentIndex={selectedMemberIndex}
         setIndex={setSelectedMemberIndex}
         tabSetSize={crew.length}
