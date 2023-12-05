@@ -90,6 +90,7 @@ export default function CrewTab({ crew }: { crew: readonly Member[] }) {
         {crew.map((member, index) => {
           return (
             <MemberPicture
+              key={member.name}
               id={imagesIds[index]}
               active={index === selectedMemberIndex}
               member={member}
