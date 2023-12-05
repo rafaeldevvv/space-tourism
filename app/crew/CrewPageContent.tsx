@@ -89,21 +89,11 @@ export default function CrewTab({ crew }: { crew: readonly Member[] }) {
       <div className={pageStyles.imageWrapper}>
         {crew.map((member, index) => {
           return (
-            <picture>
-              <source srcSet={member.images.webp} type="image/webp" />
-              <Image
-                key={member.name}
-                src={member.images.png}
-                alt={member.imageAlt}
-                width="445"
-                height="445"
-                id={imagesIds[index]}
-                className={classnames(
-                  index !== selectedMemberIndex ? utilityClasses.dNone : "",
-                  pageStyles.image
-                )}
-              />
-            </picture>
+            <MemberPicture
+              id={imagesIds[index]}
+              active={index === selectedMemberIndex}
+              member={member}
+            />
           );
         })}
         <div className={pageStyles.separator} />
@@ -112,10 +102,42 @@ export default function CrewTab({ crew }: { crew: readonly Member[] }) {
   );
 }
 
+export function MemberPicture({
+  member,
+  active,
+  id,
+}: {
+  member: Member;
+  active: boolean;
+  id: string;
+}) {
+  return (
+    <picture hidden={!active}>
+      <source srcSet={member.images.webp} type="image/webp" />
+      <Image
+        src={member.images.png}
+        alt={member.imageAlt}
+        width="445"
+        height="445"
+        id={id}
+        className={classnames(
+          pageStyles.image,
+          active ? "" : utilityClasses.dNone
+        )}
+      />
+    </picture>
+  );
+}
+
 export function MemberArticle({ member }: { member: Member }) {
   return (
     <article className={classnames(utilityClasses.flow, pageStyles.tabContent)}>
-      <header className={classnames(utilityClasses.flow, utilityClasses["flow--space-small"])}>
+      <header
+        className={classnames(
+          utilityClasses.flow,
+          utilityClasses["flow--space-small"]
+        )}
+      >
         <h2
           className={classnames(
             utilityClasses.fs600,

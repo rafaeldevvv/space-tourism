@@ -30,6 +30,7 @@
     "content";
 }
 
+/* crew */
 .grid-container--crew {
   --flow-space: 3rem;
   align-content: center;
@@ -37,6 +38,18 @@
     "title"
     "image"
     "tabs"
+    "content";
+}
+
+/* technology */
+.grid-container--technology {
+  --flow-space: 2rem;
+  --container-gap: 0;
+  padding-inline: 0;
+  
+  grid-template-areas: 
+    "title"
+    "image"
     "content";
 }
 
@@ -117,5 +130,12 @@
       ". title image ."
       ". content image ."
       ". tabs image .";
+  }
+
+  .grid-container--technology {
+    justify-items: start;
+    grid-template-areas:
+      ". title title ."
+      ". content image .";
   }
 }

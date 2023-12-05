@@ -40,28 +40,20 @@ export default function GlobalHeader() {
 
   return (
     <>
-      <header className={classes(styles.primaryHeader)}>
-        <div
-          className={classes(
-            utilities.container,
-            utilities.flex,
-            styles.container
-          )}
-        >
-          <div className={styles.logoWrapper}>
-            <Link href="/">
-              <Image
-                src="/assets/shared/logo.svg"
-                alt="space toursim logo"
-                width={40}
-                height={40}
-                className={styles.logo}
-              />
-              <span className={utilities.srOnly}>Home page</span>
-            </Link>
-          </div>
-          <Nav links={links} pathname={pathname} />
+      <header className={classes(styles.primaryHeader, utilities.flex)}>
+        <div className={styles.logoWrapper}>
+          <Link href="/">
+            <Image
+              src="/assets/shared/logo.svg"
+              alt="space toursim logo"
+              width={40}
+              height={40}
+              className={styles.logo}
+            />
+            <span className={utilities.srOnly}>Home page</span>
+          </Link>
         </div>
+        <Nav links={links} pathname={pathname} />
       </header>
     </>
   );

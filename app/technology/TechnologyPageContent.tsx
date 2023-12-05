@@ -10,6 +10,7 @@ import { Technology } from "../typescript/interfaces";
 import utilityClasses from "../shared-css/utility-classes.module.css";
 import componentsStyles from "../shared-css/components.module.css";
 import pageStyles from "./Technology.module.css";
+import layoutStyles from "../shared-css/layout.module.css";
 
 /* util functions */
 import createIds from "../utils/createIds";
@@ -19,7 +20,6 @@ import classnames from "../utils/classnames";
 import Image from "next/image";
 import { Tab, TabList, TabPanel } from "../components/TabbedInterface";
 import VisuallyHidden from "../components/VisuallyHidden";
-import NumberedTitle from "../components/NumberedTitle";
 
 export default function TechnologyPageContent({
   technologies,
@@ -73,75 +73,84 @@ export default function TechnologyPageContent({
   }, []);
 
   return (
-    <div className={utilityClasses.gridAlignContentCenter}>
-      <NumberedTitle title="space launch 101" number={3} />
-      <div
+    <div
+      className={classnames(
+        layoutStyles["grid-container"],
+        layoutStyles["grid-container--technology"],
+        pageStyles.gridContainer,
+        utilityClasses.flow
+      )}
+    >
+      <h1
         className={classnames(
-          pageStyles.gridContainer,
-          utilityClasses.gridContainer
+          utilityClasses.numberedTitle,
+          pageStyles.numberedTitle
         )}
       >
-        <div
-          className={classnames(
-            utilityClasses.flex,
-            pageStyles.tablistAndSection
-          )}
-        >
-          <TabList
-            label="Technologies"
-            className={classnames(
-              componentsStyles.numberIndicators,
-              utilityClasses.flex,
-              utilityClasses.justifyContentCenterPortrait,
-              pageStyles.tablist
-            )}
-            orientation={orientation}
-            currentIndex={selectedTechIndex}
-            tabSetSize={technologies.length}
-            setIndex={setSelectedTechIndex}
-          >
-            {technologies.map((tech, index) => {
-              return (
-                <Tab
-                  key={tech.name}
-                  pos={index + 1}
-                  setsize={technologies.length}
-                  controls={tabpanelsIds[index]}
-                  active={selectedTechIndex === index}
-                  onClick={() => setSelectedTechIndex(index)}
-                  id={tabsIds[index]}
-                  className={classnames(
-                    utilityClasses.fs600,
-                    utilityClasses.ffSerif
-                  )}
-                  activeClassname={componentsStyles.active}
-                >
-                  {index + 1} <VisuallyHidden>{tech.name}</VisuallyHidden>
-                </Tab>
-              );
-            })}
-          </TabList>
+        <span>03</span> Space Launch 101
+      </h1>
 
-          <TerminologySection
-            tabpanelsIds={tabpanelsIds}
-            tabsIds={tabsIds}
-            selectedTechIndex={selectedTechIndex}
-            technologies={technologies}
-          />
-        </div>
-        <div>
+      <div className={classnames(utilityClasses.flex, pageStyles.content)}>
+        <TabList
+          label="Technologies"
+          className={classnames(
+            componentsStyles.numberIndicators,
+            utilityClasses.flex,
+            utilityClasses.justifyContentCenterPortrait,
+            pageStyles.tablist
+          )}
+          orientation={orientation}
+          currentIndex={selectedTechIndex}
+          tabSetSize={technologies.length}
+          setIndex={setSelectedTechIndex}
+        >
           {technologies.map((tech, index) => {
             return (
-              <TechPicture
+              <Tab
                 key={tech.name}
-                technology={tech}
-                id={imagesIds[index]}
+                pos={index + 1}
+                setsize={technologies.length}
+                controls={tabpanelsIds[index]}
                 active={selectedTechIndex === index}
-              />
+                onClick={() => setSelectedTechIndex(index)}
+                id={tabsIds[index]}
+                className={classnames(
+                  utilityClasses.fs600,
+                  utilityClasses.ffSerif
+                )}
+                activeClassname={componentsStyles.active}
+              >
+                {index + 1} <VisuallyHidden>{tech.name}</VisuallyHidden>
+              </Tab>
             );
           })}
-        </div>
+        </TabList>
+
+        {technologies.map((tech, index) => {
+          return (
+            <TabPanel
+              key={tech.name}
+              id={tabpanelsIds[index]}
+              labelledBy={tabsIds[index]}
+              active={index === selectedTechIndex}
+              className={classnames(utilityClasses.flow)}
+            >
+              <TechnologyArticle technology={tech} />
+            </TabPanel>
+          );
+        })}
       </div>
+
+      {technologies.map((tech, index) => {
+        return (
+          <TechPicture
+            key={tech.name}
+            technology={tech}
+            id={imagesIds[index]}
+            active={selectedTechIndex === index}
+          />
+        );
+      })}
     </div>
   );
 }
@@ -155,8 +164,9 @@ export function TechPicture({
   id: string;
   active: boolean;
 }) {
+  const hidden = !active;
   return (
-    <picture id={id} className={active ? "" : utilityClasses.dNone}>
+    <picture id={id} className={hidden ? utilityClasses.dNone : ""}>
       <source
         srcSet={technology.images.portrait}
         media="(min-width: 50em) and (orientation: landscape)"
@@ -172,62 +182,33 @@ export function TechPicture({
   );
 }
 
-export function TerminologySection({
-  technologies,
-  tabsIds,
-  tabpanelsIds,
-  selectedTechIndex,
-}: {
-  technologies: readonly Technology[];
-  tabpanelsIds: string[];
-  tabsIds: string[];
-  selectedTechIndex: number;
-}) {
-  return (
-    <section
-      className={classnames(pageStyles.terminologySection, utilityClasses.flow)}
-    >
-      <h2
-        className={classnames(
-          utilityClasses.textLight,
-          utilityClasses.uppercase,
-          utilityClasses.fs200,
-          utilityClasses.ffSansCond,
-          utilityClasses.letterSpacing2
-        )}
-      >
-        The terminology...
-      </h2>
-      {technologies.map((tech, index) => {
-        return (
-          <TabPanel
-            key={tech.name}
-            id={tabpanelsIds[index]}
-            labelledBy={tabsIds[index]}
-            active={index === selectedTechIndex}
-          >
-            <TechnologyArticle technology={tech} />
-          </TabPanel>
-        );
-      })}
-    </section>
-  );
-}
-
 export function TechnologyArticle({ technology }: { technology: Technology }) {
   return (
     <article
-      className={classnames(pageStyles.tabpanelContent, utilityClasses.flow)}
+      className={classnames(pageStyles.terminology, utilityClasses.flow)}
     >
-      <h3
-        className={classnames(
-          utilityClasses.fs700,
-          utilityClasses.ffSerif,
-          utilityClasses.uppercase
-        )}
-      >
-        {technology.name}
-      </h3>
+      <header className={utilityClasses.flow}>
+        <h2
+          className={classnames(
+            utilityClasses.textLight,
+            utilityClasses.uppercase,
+            utilityClasses.fs200,
+            utilityClasses.ffSansCond,
+            utilityClasses.letterSpacing2
+          )}
+        >
+          The terminology...
+        </h2>
+        <p
+          className={classnames(
+            utilityClasses.fs700,
+            utilityClasses.ffSerif,
+            utilityClasses.uppercase
+          )}
+        >
+          {technology.name}
+        </p>
+      </header>
       <p className={utilityClasses.textLight}>{technology.description}</p>
     </article>
   );

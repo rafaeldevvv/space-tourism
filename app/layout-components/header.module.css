@@ -1,4 +1,5 @@
-.container {
+.primaryHeader {
+  padding-inline: 2rem;
   justify-content: space-between;
   align-items: center;
 }
@@ -10,7 +11,7 @@
 .primaryNavigation {
   --underline-gap: 2rem;
   --gap: 1.1rem clamp(1.5rem, 5vw, 3rem);
-  
+
   list-style: none;
   backdrop-filter: blur(2.5rem);
   background-color: hsl(var(--clr-light) / 0.1);
@@ -36,25 +37,25 @@
 /* -------------------------------- */
 
 @media (max-width: 35em) {
-  .primaryHeader .container {
+  .primaryHeader {
     height: 5.7rem;
   }
 
   .primaryNavigation {
     --underline-gap: 0.15rem;
     flex-direction: column;
-    
+
     padding-block-start: min(10rem, 18vh);
-    
+
     position: fixed;
     inset: 0 0 0 30vw;
     z-index: 99;
 
     transform: translateX(100%);
-    transition: transform .3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
   }
-  
-  .primaryNavigation.active {    
+
+  .primaryNavigation.active {
     transform: translateX(0%);
   }
 
@@ -73,12 +74,12 @@
 
   .mobileNavToggle {
     display: block;
-    
+
     position: absolute;
     top: 2.31rem;
     right: 2rem;
     z-index: 999;
-    
+
     width: 1.5rem;
     aspect-ratio: 1;
 
@@ -94,20 +95,19 @@
     outline: 5px solid white;
     outline-offset: 5px;
   }
-  
+
   .mobileNavToggle[aria-expanded="true"] {
     background-image: url("/assets/shared/icon-close.svg");
     position: fixed;
   }
 }
 
-
 /* -------------------------------- */
 /* Tablet Navigation                */
 /* -------------------------------- */
 
 @media (min-width: 35em) {
-  .primaryHeader .container {
+  .primaryHeader {
     padding-inline-end: 0;
   }
 
@@ -115,9 +115,9 @@
     border-color: transparent;
   }
 
-  .primaryNavigation {    
+  .primaryNavigation {
     position: static;
-    
+
     padding-inline: clamp(2.5rem, 8vw, 7rem);
   }
 
@@ -132,14 +132,11 @@
 
 @media (min-width: 50em) and (orientation: landscape), (min-width: 55em) {
   .primaryHeader {
+    --gap: 0;
     padding-top: 3rem;
   }
 
-  .container {
-    --gap: 0;
-  }
-
-  .container::after {
+  .primaryHeader::after {
     content: "";
     display: block;
     width: 100%;
@@ -159,8 +156,6 @@
   .primaryNavigation {
     position: relative;
   }
-
-  
 
   .logoWrapper,
   .primaryHeader nav {
