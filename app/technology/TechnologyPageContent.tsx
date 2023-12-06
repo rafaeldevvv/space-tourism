@@ -28,7 +28,7 @@ export default function TechnologyPageContent({
 }) {
   const [selectedTechIndex, setSelectedTechIndex] = useState(0);
   const [orientation, setOrientation] = useState<"vertical" | "horizontal">(
-    "horizontal"
+    "vertical"
   );
 
   const tabsIds = createIds(technologies.length, "tech-tab");

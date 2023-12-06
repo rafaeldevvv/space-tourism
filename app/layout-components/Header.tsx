@@ -65,7 +65,7 @@ export function Nav({ links, pathname }: { links: ILink[]; pathname: string }) {
   const listId = "primary-navigation";
 
   return (
-    <nav role="navigation" aria-label="Main menu">
+    <nav aria-label="Main menu">
       <MobileNavToggle
         controls={listId}
         onClick={() => setIsExpanded(!isExpanded)}
