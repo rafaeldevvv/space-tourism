@@ -86,34 +86,34 @@ export default function CrewTab({ crew }: { crew: readonly Member[] }) {
         );
       })}
 
-      <div className={pageStyles.imageWrapper}>
-        {crew.map((member, index) => {
-          return (
+      {crew.map((member, index) => {
+        return (
+          <div
+            className={pageStyles.imageWrapper}
+            hidden={index !== selectedMemberIndex}
+          >
             <MemberPicture
               key={member.name}
               id={imagesIds[index]}
-              active={index === selectedMemberIndex}
               member={member}
             />
-          );
-        })}
-        <div className={pageStyles.separator} />
-      </div>
+            <div className={pageStyles.separator} />
+          </div>
+        );
+      })}
     </div>
   );
 }
 
 export function MemberPicture({
   member,
-  active,
   id,
 }: {
   member: Member;
-  active: boolean;
   id: string;
 }) {
   return (
-    <picture hidden={!active}>
+    <picture>
       <source srcSet={member.images.webp} type="image/webp" />
       <Image
         src={member.images.png}
@@ -121,10 +121,7 @@ export function MemberPicture({
         width="445"
         height="445"
         id={id}
-        className={classnames(
-          pageStyles.image,
-          active ? "" : utilityClasses.dNone
-        )}
+        className={classnames(pageStyles.image)}
       />
     </picture>
   );

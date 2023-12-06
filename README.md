@@ -473,6 +473,14 @@ Even though the image is placed in a grid area, you can use `grid-area: span 2` 
 }
 ```
 
+The `scrollbar-gutter` CSS property allows you to reserve space for the scrollbar.
+
+```css
+html {
+  scrollbar-gutter: stable both-edges;
+}
+```
+
 ### Useful Resources
 
 - [Space Travel course with Kevin Powell](https://scrimba.com/learn/spacetravel)

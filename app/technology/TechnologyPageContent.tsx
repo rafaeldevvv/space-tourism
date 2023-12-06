@@ -164,9 +164,9 @@ export function TechPicture({
   id: string;
   active: boolean;
 }) {
-  const hidden = !active;
   return (
-    <picture id={id} className={hidden ? utilityClasses.dNone : ""}>
+  <div className={pageStyles.imageWrapper} hidden={!active}>
+    <picture id={id}>
       <source
         srcSet={technology.images.portrait}
         media="(min-width: 50em) and (orientation: landscape)"
@@ -179,6 +179,7 @@ export function TechPicture({
         height="527"
       />
     </picture>
+  </div>
   );
 }
 

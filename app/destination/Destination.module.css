@@ -1,4 +1,4 @@
-.gridContainer > picture {
+.gridContainer > .imageWrapper {
   grid-area: image;
   max-width: 60%;
   align-self: start;
@@ -33,7 +33,7 @@
 }
 
 @media (min-width: 50em) and (orientation: landscape) {
-  .gridContainer > picture {
+  .gridContainer > .imageWrapper {
     max-width: 100%;
     justify-self: center;
   }

@@ -1,10 +1,11 @@
-.gridContainer > picture {
+.gridContainer > .imageWrapper {
    grid-area: image;
 }
 
 .content {
-   flex-direction: column;
    --gap: 2rem;
+   flex-direction: column;
+   align-items: center;
    padding-inline: 2rem;
    grid-area: content;
 }
@@ -32,7 +33,7 @@
 }
 
 @media (min-width: 50em) and (orientation: landscape) {
-   .gridContainer > picture {
+   .gridContainer > .imageWrapper {
       grid-column: span 2;
    }
 

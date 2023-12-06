@@ -1,6 +1,7 @@
 .grid-container {
   display: grid;
   place-items: center;
+  align-content: center;
   padding-inline: 2rem;
   padding-block: 1rem 4rem;
 }
@@ -21,7 +22,6 @@
   --flow-space: 2rem;
   padding-block: 0rem;
   row-gap: 0;
-  align-content: center;
   /* the grid-area properties are assigned in the Destination.module.css file in the destination directory */
   grid-template-areas:
     "title"
@@ -33,7 +33,6 @@
 /* crew */
 .grid-container--crew {
   --flow-space: 3rem;
-  align-content: center;
   grid-template-areas:
     "title"
     "image"
@@ -46,7 +45,6 @@
   --flow-space: 2rem;
   --container-gap: 0;
   padding-inline: 0;
-  
   grid-template-areas: 
     "title"
     "image"

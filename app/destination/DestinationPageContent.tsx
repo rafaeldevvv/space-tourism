@@ -73,7 +73,7 @@ export default function DestinationsTabs({
               pos={index + 1}
               setsize={destinations.length}
               // stack overflow question ########################################################################################################################
-              controls={tabpanelsIds[index] + " " + imagesIds[index]} 
+              controls={tabpanelsIds[index] + " " + imagesIds[index]}
               className={classnames(
                 pageStyles.tab,
                 utilityClasses.textLight,
@@ -111,22 +111,40 @@ export default function DestinationsTabs({
 
       {destinations.map((dest, index) => {
         return (
-          <picture key={dest.name}>
-            <source srcSet={dest.images.webp} type="image/webp" />
-            <Image
-              key={dest.name}
-              src={dest.images.png}
-              alt={dest.imageAlt}
-              width="445"
-              height="445"
-              id={imagesIds[index]}
-              className={
-                index !== selectedDestinationIndex ? utilityClasses.dNone : ""
-              }
-            />
-          </picture>
+          <DestinationImage
+            key={dest.name}
+            id={imagesIds[index]}
+            destination={dest}
+            active={index === selectedDestinationIndex}
+          />
         );
       })}
+    </div>
+  );
+}
+
+export function DestinationImage({
+  id,
+  destination,
+  active,
+}: {
+  destination: Destination;
+  id: string;
+  active: boolean;
+}) {
+  return (
+    <div className={pageStyles.imageWrapper} hidden={!active}>
+      <picture>
+        <source srcSet={destination.images.webp} type="image/webp" />
+        <Image
+          key={destination.name}
+          src={destination.images.png}
+          alt={destination.imageAlt}
+          width="445"
+          height="445"
+          id={id}
+        />
+      </picture>
     </div>
   );
 }
@@ -146,10 +164,7 @@ export function MetaBlock({ title, info }: { title: string; info: string }) {
         {title}
       </h3>
       <p
-        className={classnames(
-          utilityClasses.uppercase,
-          utilityClasses.ffSerif
-        )}
+        className={classnames(utilityClasses.uppercase, utilityClasses.ffSerif)}
       >
         {info}
       </p>
