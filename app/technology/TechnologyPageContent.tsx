@@ -165,21 +165,24 @@ export function TechPicture({
   active: boolean;
 }) {
   return (
-  <div className={pageStyles.imageWrapper} hidden={!active}>
-    <picture id={id}>
-      <source
-        srcSet={technology.images.portrait}
-        media="(min-width: 50em) and (orientation: landscape)"
-      />
-      <source srcSet={technology.images.landscape} />
-      <Image
-        src={technology.images.portrait}
-        alt={technology.imageAlt}
-        width="768"
-        height="527"
-      />
-    </picture>
-  </div>
+    <div className={pageStyles.imageWrapper} hidden={!active}>
+      <picture id={id}>
+        <source
+          srcSet={technology.images.portrait}
+          media="(min-width: 50em) and (orientation: landscape)"
+        />
+        <source
+          srcSet={technology.images.landscape}
+          media="(max-width: 50em), (orientation: portrait)"
+        />
+        <Image
+          src={technology.images.portrait}
+          alt={technology.imageAlt}
+          width="768"
+          height="527"
+        />
+      </picture>
+    </div>
   );
 }
 

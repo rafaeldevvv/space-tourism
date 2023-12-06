@@ -91,9 +91,9 @@ export default function CrewTab({ crew }: { crew: readonly Member[] }) {
           <div
             className={pageStyles.imageWrapper}
             hidden={index !== selectedMemberIndex}
+            key={member.name}
           >
             <MemberPicture
-              key={member.name}
               id={imagesIds[index]}
               member={member}
             />

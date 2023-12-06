@@ -497,8 +497,11 @@ html {
 - [Window: `devicePixelRatio` property](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio) - The example using `matchMedia()` was useful.
 - [`<picture>`: The Picture element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)
 - [ChatGPT](https://chat.openai.com/chat)
+- [Bing](https://www.bing.com/?scope=web&FORM=HDRSC2) - Useful AI
 - [aria-controls](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-controls)
 - [How do I commit case-sensitive only filename changes in Git?](https://stackoverflow.com/questions/17683458/how-do-i-commit-case-sensitive-only-filename-changes-in-git)
+- [Advanced text formatting](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Advanced_text_formatting#abbreviations)
+- [HTML Validator](https://validator.w3.org/)
 
 ## Author
 
