@@ -1,4 +1,5 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext, useState } from "react";
+import { TabFocusContext } from "./TabContext";
 
 export function Tab({
   children,
@@ -21,13 +22,14 @@ export function Tab({
   className?: string;
   activeClassname?: string;
 }) {
+  const tabCanFocus = useContext(TabFocusContext);
   const tabRef = useRef<null | HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (active) {
+    if (active && tabCanFocus) {
       tabRef.current!.focus();
     }
-  }, [active]);
+  }, [active, tabCanFocus]);
 
   if (active) className += " " + activeClassname;
 
@@ -68,11 +70,14 @@ export function TabList({
   currentIndex: number;
   setIndex: (index: number) => void;
 }) {
+  const [canFocus, setCanFocus] = useState(false);
+
   return (
     <div
       role="tablist"
       className={className}
       aria-label={label}
+      onFocus={() => setCanFocus(true)}
       onKeyDown={(e) => {
         const { key } = e;
 
@@ -104,7 +109,9 @@ export function TabList({
       aria-orientation={orientation}
       style={style}
     >
-      {children}
+      <TabFocusContext.Provider value={canFocus}>
+        {children}
+      </TabFocusContext.Provider>
     </div>
   );
 }
@@ -122,10 +129,6 @@ export function TabPanel({
   children: React.ReactNode;
   active: boolean;
 }) {
-  /* #################################################### */
-  /* maybe you need tabIndex={-1} instead, look for it */
-  /* maybe you also need to style the tabpanel when it has focus */
-  /* #################################################### */
   return (
     <div
       role="tabpanel"
